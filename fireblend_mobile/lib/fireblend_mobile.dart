@@ -45,14 +45,14 @@ class FireblendMobile extends Fireblend{
   }
 
   @override
-  FireblendAuth get auth => FireblendAuthMobile(_app);
+  FireblendAuthMobile get auth => FireblendAuthMobile(_app);
 
   @override
-  FireblendDatabase get database => FireblendDatabaseMobile(_app);
+  FireblendDatabaseMobile get database => FireblendDatabaseMobile(_app);
 
   @override
-  FireblendMessaging get messaging => FireblendMessagingMobile();
+  FireblendMessagingMobile get messaging => FireblendMessagingMobile();
 
   @override
-  FireblendStorage get storage => FireblendStorageMobile(_app);
+  FireblendStorageMobile get storage => FireblendStorageMobile(_app);
 }

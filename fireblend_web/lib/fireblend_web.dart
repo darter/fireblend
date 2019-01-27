@@ -39,14 +39,14 @@ class FireblendWeb extends Fireblend{
   }
 
   @override
-  FireblendAuth get auth => FireblendAuthWeb(_app);
+  FireblendAuthWeb get auth => FireblendAuthWeb(_app);
 
   @override
-  FireblendDatabase get database => FireblendDatabaseWeb(_app);
+  FireblendDatabaseWeb get database => FireblendDatabaseWeb(_app);
 
   @override
-  FireblendMessaging get messaging => FireblendMessagingWeb(_app);
+  FireblendMessagingWeb get messaging => FireblendMessagingWeb(_app);
 
   @override
-  FireblendStorage get storage => FireblendStorageWeb(_app);
+  FireblendStorageWeb get storage => FireblendStorageWeb(_app);
 }

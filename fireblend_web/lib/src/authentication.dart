@@ -10,7 +10,7 @@ class FireblendAuthWeb extends FireblendAuth {
   fb.Auth get auth => _auth;
 
   @override
-  Future<FireblendUser> createUserWithEmailAndPassword(
+  Future<FireblendUserWeb> createUserWithEmailAndPassword(
       String email, String password) async {
     fb.UserCredential credential =
         await _auth.createUserWithEmailAndPassword(email, password);
@@ -18,7 +18,7 @@ class FireblendAuthWeb extends FireblendAuth {
   }
 
   @override
-  Future<FireblendUser> currentUser() async {
+  Future<FireblendUserWeb> currentUser() async {
     return FireblendUserWeb._internal(_auth.currentUser);
   }
 
@@ -28,7 +28,7 @@ class FireblendAuthWeb extends FireblendAuth {
   }
 
   @override
-  Future<FireblendUser> linkWithEmailAndPassword(
+  Future<FireblendUserWeb> linkWithEmailAndPassword(
       String email, String password) async {
     fb.AuthCredential auth = fb.EmailAuthProvider.credential(email, password);
     fb.UserCredential credential =
@@ -37,7 +37,7 @@ class FireblendAuthWeb extends FireblendAuth {
   }
 
   @override
-  Future<FireblendUser> linkWithFacebookCredential(String accessToken) async {
+  Future<FireblendUserWeb> linkWithFacebookCredential(String accessToken) async {
     fb.AuthCredential auth = fb.FacebookAuthProvider.credential(accessToken);
     fb.UserCredential credential =
         await _auth.currentUser.linkAndRetrieveDataWithCredential(auth);
@@ -45,7 +45,7 @@ class FireblendAuthWeb extends FireblendAuth {
   }
 
   @override
-  Future<FireblendUser> linkWithGithubCredential(String token) async {
+  Future<FireblendUserWeb> linkWithGithubCredential(String token) async {
     fb.AuthCredential auth = fb.GithubAuthProvider.credential(token);
     fb.UserCredential credential =
         await _auth.currentUser.linkAndRetrieveDataWithCredential(auth);
@@ -53,7 +53,7 @@ class FireblendAuthWeb extends FireblendAuth {
   }
 
   @override
-  Future<FireblendUser> linkWithGoogleCredential(
+  Future<FireblendUserWeb> linkWithGoogleCredential(
       String idToken, String accessToken) async {
     fb.AuthCredential auth =
         fb.GoogleAuthProvider.credential(idToken, accessToken);
@@ -63,7 +63,7 @@ class FireblendAuthWeb extends FireblendAuth {
   }
 
   @override
-  Future<FireblendUser> linkWithTwitterCredential(
+  Future<FireblendUserWeb> linkWithTwitterCredential(
       String authToken, String authTokenSecret) async {
     fb.AuthCredential auth =
         fb.TwitterAuthProvider.credential(authTokenSecret, authTokenSecret);
@@ -73,7 +73,7 @@ class FireblendAuthWeb extends FireblendAuth {
   }
 
   @override
-  Stream<FireblendUser> get onAuthStateChanged =>
+  Stream<FireblendUserWeb> get onAuthStateChanged =>
       _auth.onAuthStateChanged.map((user) => FireblendUserWeb._internal(user));
 
   @override
@@ -132,19 +132,19 @@ class FireblendAuthWeb extends FireblendAuth {
   }
 
   @override
-  Future<FireblendUser> signInAnonymously() async {
+  Future<FireblendUserWeb> signInAnonymously() async {
     fb.UserCredential credential = await _auth.signInAnonymously();
     return FireblendUserWeb._internal(credential.user);
   }
 
   @override
-  Future<FireblendUser> signInWithCustomToken(String token) async {
+  Future<FireblendUserWeb> signInWithCustomToken(String token) async {
     fb.UserCredential credential = await _auth.signInWithCustomToken(token);
     return FireblendUserWeb._internal(credential.user);
   }
 
   @override
-  Future<FireblendUser> signInWithEmailAndPassword(
+  Future<FireblendUserWeb> signInWithEmailAndPassword(
       String email, String password) async {
     fb.UserCredential credential =
         await _auth.signInWithEmailAndPassword(email, password);
@@ -152,7 +152,7 @@ class FireblendAuthWeb extends FireblendAuth {
   }
 
   @override
-  Future<FireblendUser> signInWithFacebook(String accessToken) async {
+  Future<FireblendUserWeb> signInWithFacebook(String accessToken) async {
     fb.AuthCredential auth = fb.FacebookAuthProvider.credential(accessToken);
     fb.UserCredential credential =
         await _auth.signInAndRetrieveDataWithCredential(auth);
@@ -160,7 +160,7 @@ class FireblendAuthWeb extends FireblendAuth {
   }
 
   @override
-  Future<FireblendUser> signInWithGithub(String token) async {
+  Future<FireblendUserWeb> signInWithGithub(String token) async {
     fb.AuthCredential auth = fb.GithubAuthProvider.credential(token);
     fb.UserCredential credential =
         await _auth.signInAndRetrieveDataWithCredential(auth);
@@ -168,7 +168,7 @@ class FireblendAuthWeb extends FireblendAuth {
   }
 
   @override
-  Future<FireblendUser> signInWithGoogle(
+  Future<FireblendUserWeb> signInWithGoogle(
       String idToken, String accessToken) async {
     fb.AuthCredential auth =
         fb.GoogleAuthProvider.credential(idToken, accessToken);
@@ -178,7 +178,7 @@ class FireblendAuthWeb extends FireblendAuth {
   }
 
   @override
-  Future<FireblendUser> signInWithTwitter(
+  Future<FireblendUserWeb> signInWithTwitter(
       String authToken, String authTokenSecret) async {
     fb.AuthCredential auth =
         fb.TwitterAuthProvider.credential(authToken, authTokenSecret);
@@ -215,11 +215,11 @@ class FireblendUserWeb extends FireblendUserInfoWeb implements FireblendUser {
   bool get isEmailVerified => _user.emailVerified;
 
   @override
-  FireblendUserMetadata get metadata =>
+  FireblendUserMetadataWeb get metadata =>
       FireblendUserMetadataWeb._internal(_user.metadata);
 
   @override
-  List<FireblendUserInfo> get providerData => _user.providerData
+  List<FireblendUserInfoWeb> get providerData => _user.providerData
       .map((info) => FireblendUserInfoWeb._internal(info))
       .toList();
 

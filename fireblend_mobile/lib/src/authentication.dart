@@ -11,7 +11,7 @@ class FireblendAuthMobile extends FireblendAuth {
   FirebaseAuth get auth => _auth;
 
   @override
-  Future<FireblendUser> createUserWithEmailAndPassword(
+  Future<FireblendUserMobile> createUserWithEmailAndPassword(
       String email, String password) async {
     FirebaseUser user = await _auth.createUserWithEmailAndPassword(
         email: email, password: password);
@@ -19,7 +19,7 @@ class FireblendAuthMobile extends FireblendAuth {
   }
 
   @override
-  Future<FireblendUser> currentUser() async {
+  Future<FireblendUserMobile> currentUser() async {
     FirebaseUser user = await _auth.currentUser();
     return FireblendUserMobile._internal(user);
   }
@@ -30,7 +30,7 @@ class FireblendAuthMobile extends FireblendAuth {
   }
 
   @override
-  Future<FireblendUser> linkWithEmailAndPassword(
+  Future<FireblendUserMobile> linkWithEmailAndPassword(
       String email, String password) async {
     FirebaseUser user =
         await _auth.linkWithEmailAndPassword(email: email, password: password);
@@ -38,20 +38,20 @@ class FireblendAuthMobile extends FireblendAuth {
   }
 
   @override
-  Future<FireblendUser> linkWithFacebookCredential(String accessToken) async {
+  Future<FireblendUserMobile> linkWithFacebookCredential(String accessToken) async {
     FirebaseUser user =
         await _auth.linkWithFacebookCredential(accessToken: accessToken);
     return FireblendUserMobile._internal(user);
   }
 
   @override
-  Future<FireblendUser> linkWithGithubCredential(String token) async {
+  Future<FireblendUserMobile> linkWithGithubCredential(String token) async {
     FirebaseUser user = await _auth.linkWithGithubCredential(token: token);
     return FireblendUserMobile._internal(user);
   }
 
   @override
-  Future<FireblendUser> linkWithGoogleCredential(
+  Future<FireblendUserMobile> linkWithGoogleCredential(
       String idToken, String accessToken) async {
     FirebaseUser user = await _auth.linkWithGoogleCredential(
         idToken: idToken, accessToken: accessToken);
@@ -59,7 +59,7 @@ class FireblendAuthMobile extends FireblendAuth {
   }
 
   @override
-  Future<FireblendUser> linkWithTwitterCredential(
+  Future<FireblendUserMobile> linkWithTwitterCredential(
       String authToken, String authTokenSecret) async {
     FirebaseUser user = await _auth.linkWithTwitterCredential(
         authToken: authToken, authTokenSecret: authTokenSecret);
@@ -67,7 +67,7 @@ class FireblendAuthMobile extends FireblendAuth {
   }
 
   @override
-  Stream<FireblendUser> get onAuthStateChanged => _auth.onAuthStateChanged
+  Stream<FireblendUserMobile> get onAuthStateChanged => _auth.onAuthStateChanged
       .map((user) => FireblendUserMobile._internal(user));
 
   @override
@@ -111,19 +111,19 @@ class FireblendAuthMobile extends FireblendAuth {
   }
 
   @override
-  Future<FireblendUser> signInAnonymously() async {
+  Future<FireblendUserMobile> signInAnonymously() async {
     FirebaseUser user = await _auth.signInAnonymously();
     return FireblendUserMobile._internal(user);
   }
 
   @override
-  Future<FireblendUser> signInWithCustomToken(String token) async {
+  Future<FireblendUserMobile> signInWithCustomToken(String token) async {
     FirebaseUser user = await _auth.signInWithCustomToken(token: token);
     return FireblendUserMobile._internal(user);
   }
 
   @override
-  Future<FireblendUser> signInWithEmailAndPassword(
+  Future<FireblendUserMobile> signInWithEmailAndPassword(
       String email, String password) async {
     FirebaseUser user = await _auth.signInWithEmailAndPassword(
         email: email, password: password);
@@ -131,20 +131,20 @@ class FireblendAuthMobile extends FireblendAuth {
   }
 
   @override
-  Future<FireblendUser> signInWithFacebook(String accessToken) async {
+  Future<FireblendUserMobile> signInWithFacebook(String accessToken) async {
     FirebaseUser user =
         await _auth.signInWithFacebook(accessToken: accessToken);
     return FireblendUserMobile._internal(user);
   }
 
   @override
-  Future<FireblendUser> signInWithGithub(String token) async {
+  Future<FireblendUserMobile> signInWithGithub(String token) async {
     FirebaseUser user = await _auth.signInWithGithub(token: token);
     return FireblendUserMobile._internal(user);
   }
 
   @override
-  Future<FireblendUser> signInWithGoogle(
+  Future<FireblendUserMobile> signInWithGoogle(
       String idToken, String accessToken) async {
     FirebaseUser user = await _auth.signInWithGoogle(
         idToken: idToken, accessToken: accessToken);
@@ -152,7 +152,7 @@ class FireblendAuthMobile extends FireblendAuth {
   }
 
   @override
-  Future<FireblendUser> signInWithTwitter(
+  Future<FireblendUserMobile> signInWithTwitter(
       String authToken, String authTokenSecret) async {
     FirebaseUser user = await _auth.signInWithTwitter(
         authToken: authToken, authTokenSecret: authTokenSecret);
@@ -188,11 +188,11 @@ class FireblendUserMobile extends FireblendUserInfoMobile
   bool get isEmailVerified => _user.isEmailVerified;
 
   @override
-  FireblendUserMetadata get metadata =>
+  FireblendUserMetadataMobile get metadata =>
       FireblendUserMetadataMobile._internal(_user.metadata);
 
   @override
-  List<FireblendUserInfo> get providerData => _user.providerData
+  List<FireblendUserInfoMobile> get providerData => _user.providerData
       .map((info) => FireblendUserInfoMobile._internal(info))
       .toList();
 

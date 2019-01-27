@@ -20,7 +20,7 @@ class FireblendDatabaseWeb extends FireblendDatabase {
   }
 
   @override
-  FireblendDatabaseReference ref([String path]) {
+  FireblendDatabaseReferenceWeb ref([String path]) {
     return FireblendDatabaseReferenceWeb._internal(_database.ref(path));
   }
 }
@@ -33,7 +33,7 @@ class FireblendDatabaseReferenceWeb extends FireblendQueryWeb
       : super._internal(_reference);
 
   @override
-  FireblendDatabaseReference child(String path) {
+  FireblendDatabaseReferenceWeb child(String path) {
     return FireblendDatabaseReferenceWeb._internal(_reference.child(path));
   }
 
@@ -41,12 +41,12 @@ class FireblendDatabaseReferenceWeb extends FireblendQueryWeb
   String get key => _reference.key;
 
   @override
-  FireblendDatabaseReference parent() {
+  FireblendDatabaseReferenceWeb parent() {
     return FireblendDatabaseReferenceWeb._internal(_reference.parent);
   }
 
   @override
-  FireblendDatabaseReference push([value]) {
+  FireblendDatabaseReferenceWeb push([value]) {
     return FireblendDatabaseReferenceWeb._internal(_reference.push(value));
   }
 
@@ -56,7 +56,7 @@ class FireblendDatabaseReferenceWeb extends FireblendQueryWeb
   }
 
   @override
-  FireblendDatabaseReference root() {
+  FireblendDatabaseReferenceWeb root() {
     return FireblendDatabaseReferenceWeb._internal(_reference.root);
   }
 
@@ -76,7 +76,6 @@ class FireblendDatabaseReferenceWeb extends FireblendQueryWeb
   Future update(Map<String, dynamic> value) {
     return _reference.update(value);
   }
-
 }
 
 class FireblendQueryWeb extends FireblendQuery {
@@ -85,78 +84,78 @@ class FireblendQueryWeb extends FireblendQuery {
   FireblendQueryWeb._internal(this._query);
 
   @override
-  FireblendQuery endAt(value, {String key}) {
+  FireblendQueryWeb endAt(value, {String key}) {
     return FireblendQueryWeb._internal(_query.endAt(value, key));
   }
 
   @override
-  FireblendQuery equalTo(value, {String key}) {
+  FireblendQueryWeb equalTo(value, {String key}) {
     return FireblendQueryWeb._internal(_query.equalTo(value, key));
   }
 
   @override
-  FireblendQuery limitToFirst(int limit) {
+  FireblendQueryWeb limitToFirst(int limit) {
     return FireblendQueryWeb._internal(_query.limitToFirst(limit));
   }
 
   @override
-  FireblendQuery limitToLast(int limit) {
+  FireblendQueryWeb limitToLast(int limit) {
     return FireblendQueryWeb._internal(_query.limitToLast(limit));
   }
 
   @override
-  Stream<FireblendEvent> get onChildAdded => _query.onChildAdded
+  Stream<FireblendEventWeb> get onChildAdded => _query.onChildAdded
       .map((fb.QueryEvent event) => FireblendEventWeb._internal(event));
 
   @override
-  Stream<FireblendEvent> get onChildChanged => _query.onChildChanged
+  Stream<FireblendEventWeb> get onChildChanged => _query.onChildChanged
       .map((fb.QueryEvent event) => FireblendEventWeb._internal(event));
 
   @override
-  Stream<FireblendEvent> get onChildMoved => _query.onChildMoved
+  Stream<FireblendEventWeb> get onChildMoved => _query.onChildMoved
       .map((fb.QueryEvent event) => FireblendEventWeb._internal(event));
 
   @override
-  Stream<FireblendEvent> get onChildRemoved => _query.onChildRemoved
+  Stream<FireblendEventWeb> get onChildRemoved => _query.onChildRemoved
       .map((fb.QueryEvent event) => FireblendEventWeb._internal(event));
 
   @override
-  Stream<FireblendEvent> get onValue => _query.onValue
+  Stream<FireblendEventWeb> get onValue => _query.onValue
       .map((fb.QueryEvent event) => FireblendEventWeb._internal(event));
 
   @override
-  Future<FireblendDataSnapshot> once() async {
+  Future<FireblendDataSnapshotWeb> once() async {
     fb.QueryEvent event = await _query.once("value");
     return FireblendDataSnapshotWeb._internal(event.snapshot);
   }
 
   @override
-  FireblendQuery orderByChild(String key) {
+  FireblendQueryWeb orderByChild(String key) {
     return FireblendQueryWeb._internal(_query.orderByChild(key));
   }
 
   @override
-  FireblendQuery orderByKey() {
+  FireblendQueryWeb orderByKey() {
     return FireblendQueryWeb._internal(_query.orderByKey());
   }
 
   @override
-  FireblendQuery orderByPriority() {
+  FireblendQueryWeb orderByPriority() {
     return FireblendQueryWeb._internal(_query.orderByPriority());
   }
 
   @override
-  FireblendQuery orderByValue() {
+  FireblendQueryWeb orderByValue() {
     return FireblendQueryWeb._internal(_query.orderByValue());
   }
 
   @override
-  FireblendDatabaseReference reference() {
+  FireblendDatabaseReferenceWeb reference() {
     return FireblendDatabaseReferenceWeb._internal(_query.ref);
   }
 
   @override
-  FireblendQuery startAt(value, {String key}) {
+  FireblendQueryWeb startAt(value, {String key}) {
     return FireblendQueryWeb._internal(_query.startAt(value, key));
   }
 
@@ -171,7 +170,7 @@ class FireblendEventWeb extends FireblendEvent {
   String get previousSiblingKey => _event.prevChildKey;
 
   @override
-  FireblendDataSnapshot get snapshot =>
+  FireblendDataSnapshotWeb get snapshot =>
       FireblendDataSnapshotWeb._internal(_event.snapshot);
 }
 
