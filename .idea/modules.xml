@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/fireblend/fireblend.iml" filepath="$PROJECT_DIR$/fireblend/fireblend.iml" />
+      <module fileurl="file://$PROJECT_DIR$/fireblend_mobile/fireblend_mobile.iml" filepath="$PROJECT_DIR$/fireblend_mobile/fireblend_mobile.iml" />
+      <module fileurl="file://$PROJECT_DIR$/fireblend_web/fireblend_web.iml" filepath="$PROJECT_DIR$/fireblend_web/fireblend_web.iml" />
+    </modules>
+  </component>
+</project>
