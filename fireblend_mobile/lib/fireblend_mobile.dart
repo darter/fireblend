@@ -19,6 +19,8 @@ class FireblendMobile extends Fireblend{
 
   FireblendMobile._internal(this._app);
 
+  FirebaseApp get app => _app;
+
   static Future<FireblendMobile> initialize([FireblendConfiguration config]) async {
     FirebaseApp app = config == null ? FirebaseApp.instance
         : FirebaseApp.appNamed(config.projectId);

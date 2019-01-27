@@ -18,6 +18,8 @@ class FireblendWeb extends Fireblend{
 
   FireblendWeb._internal(this._app);
 
+  fb.App get app => _app;
+
   static Future<FireblendWeb> initialize([FireblendConfiguration config]) async {
     fb.App app;
     try {
