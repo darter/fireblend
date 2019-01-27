@@ -155,7 +155,7 @@ class FireblendStorageMetadataMobile extends FireblendStorageMetadata {
           customMetadata: customMetadata,
         ),
         super(
-          md5Hash: md5Hash,
+          md5Hash: null,
           cacheControl: cacheControl,
           contentDisposition: contentDisposition,
           contentEncoding: contentEncoding,
