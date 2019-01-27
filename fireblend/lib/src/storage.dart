@@ -1,5 +1,6 @@
 abstract class FireblendStorage {
   FireblendStorageReference ref([String path]);
+  FireblendStorageReference refFromUrl(String url);
   Future<int> getMaxOperationRetryTime();
   Future<int> getMaxUploadRetryTime();
   Future setMaxUploadRetryTime(int time);
@@ -21,23 +22,43 @@ abstract class FireblendStorageReference {
   Future<FireblendStorageMetadata> updateMetadata(FireblendStorageMetadata metadata);
 }
 
-abstract class FireblendStorageMetadata {
-  String get bucket;
-  String get generation;
-  String get metadataGeneration;
-  String get path;
-  String get name;
-  int get sizeBytes;
-  int get timeCreated;
-  int get timeUpdated;
-  String get md5Hash;
+class FireblendStorageMetadata {
+  final String bucket;
+  final String generation;
+  final String metadataGeneration;
+  final String path;
+  final String name;
+  final int sizeBytes;
+  final int timeCreated;
+  final int timeUpdated;
 
-  String get cacheControl;
-  String get contentDisposition;
-  String get contentEncoding;
-  String get contentLanguage;
-  String get contentType;
-  Map<String, String> get customMetadata;
+  final String md5Hash;
+  final String cacheControl;
+  final String contentDisposition;
+  final String contentEncoding;
+  final String contentLanguage;
+  final String contentType;
+  final Map<String, String> customMetadata;
+
+  FireblendStorageMetadata(
+      {this.md5Hash,
+      this.cacheControl,
+      this.contentDisposition,
+      this.contentEncoding,
+      this.contentLanguage,
+      this.contentType,
+      Map<String, String> customMetadata})
+      : bucket = null,
+        generation = null,
+        metadataGeneration = null,
+        path = null,
+        name = null,
+        sizeBytes = null,
+        timeCreated = null,
+        timeUpdated = null,
+        customMetadata = customMetadata == null
+            ? null
+            : Map<String, String>.unmodifiable(customMetadata);
 }
 
 abstract class FireblendUploadTask {

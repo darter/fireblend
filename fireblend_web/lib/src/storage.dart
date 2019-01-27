@@ -27,6 +27,11 @@ class FireblendStorageWeb extends FireblendStorage {
   }
 
   @override
+  FireblendStorageReferenceWeb refFromUrl(String url) {
+    return FireblendStorageReferenceWeb._internal(_storage.refFromURL(url));
+  }
+
+  @override
   Future setMaxOperationRetryTime(int time) async {
     return _storage.setMaxOperationRetryTime(time);
   }
@@ -147,7 +152,15 @@ class FireblendStorageMetadataWeb extends FireblendStorageMetadata {
           contentLanguage: contentLanguage,
           contentType: contentType,
           customMetadata: customMetadata,
-        );
+        ),
+        super(
+          md5Hash: md5Hash,
+          cacheControl: cacheControl,
+          contentDisposition: contentDisposition,
+          contentEncoding: contentEncoding,
+          contentLanguage: contentLanguage,
+          contentType: contentType,
+          customMetadata: customMetadata);
 
   fb.FullMetadata get fullMetadata => _fullMetadata;
 
@@ -163,7 +176,9 @@ class FireblendStorageMetadataWeb extends FireblendStorageMetadata {
       ? _fullMetadata.cacheControl
       : _uploadMetadata != null
           ? _uploadMetadata.cacheControl
-          : _settableMetadata != null ? _settableMetadata.cacheControl : null;
+          : _settableMetadata != null
+              ? _settableMetadata.cacheControl
+              : null;
 
   @override
   String get contentDisposition => _fullMetadata != null
@@ -197,14 +212,18 @@ class FireblendStorageMetadataWeb extends FireblendStorageMetadata {
       ? _fullMetadata.contentType
       : _uploadMetadata != null
           ? _uploadMetadata.contentType
-          : _settableMetadata != null ? _settableMetadata.contentType : null;
+          : _settableMetadata != null
+              ? _settableMetadata.contentType
+              : null;
 
   @override
   Map<String, String> get customMetadata => _fullMetadata != null
       ? _fullMetadata.customMetadata
       : _uploadMetadata != null
           ? _uploadMetadata.customMetadata
-          : _settableMetadata != null ? _settableMetadata.customMetadata : null;
+          : _settableMetadata != null
+              ? _settableMetadata.customMetadata
+              : null;
 
   @override
   String get generation =>
@@ -213,7 +232,9 @@ class FireblendStorageMetadataWeb extends FireblendStorageMetadata {
   @override
   String get md5Hash => _fullMetadata != null
       ? _fullMetadata.md5Hash
-      : _uploadMetadata != null ? _uploadMetadata.md5Hash : null;
+      : _uploadMetadata != null
+          ? _uploadMetadata.md5Hash
+          : null;
 
   @override
   String get metadataGeneration =>

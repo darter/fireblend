@@ -35,6 +35,15 @@ class FireblendStorageMobile extends FireblendStorage {
   }
 
   @override
+  FireblendStorageReferenceMobile refFromUrl(String url) {
+    int startIndex = url.indexOf("/o/") + 3;
+    int endIndex = url.indexOf("?");
+    String trimmed = url.substring(startIndex, endIndex);
+    String filename = trimmed.replaceAll("%3A", ":").replaceAll("%2F", "/");
+    return FireblendStorageReferenceMobile._internal(_storage.ref().child(filename));
+  }
+
+  @override
   Future setMaxOperationRetryTime(int time) {
     return _storage.setMaxOperationRetryTimeMillis(time);
   }
@@ -144,7 +153,15 @@ class FireblendStorageMetadataMobile extends FireblendStorageMetadata {
           contentLanguage: contentLanguage,
           contentType: contentType,
           customMetadata: customMetadata,
-        );
+        ),
+        super(
+          md5Hash: md5Hash,
+          cacheControl: cacheControl,
+          contentDisposition: contentDisposition,
+          contentEncoding: contentEncoding,
+          contentLanguage: contentLanguage,
+          contentType: contentType,
+          customMetadata: customMetadata);
 
   @override
   String get bucket => _metadata.bucket;
