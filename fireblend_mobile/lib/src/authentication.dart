@@ -1,7 +1,7 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
-import 'package:fireblend_mobile/src/temp/fireblend.dart';
+import 'package:fireblend/fireblend.dart';
 
 class FireblendAuthMobile extends FireblendAuth {
   FirebaseAuth _auth;

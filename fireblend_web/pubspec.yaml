@@ -5,10 +5,14 @@ description: A starting point for Dart libraries or applications.
 # author: Eduardo <email@example.com>
 
 environment:
-  sdk: '>=2.1.0 <3.0.0'
+  sdk: '>=2.0.0 <3.0.0'
 
 dependencies:
   firebase: ^5.0.2
+  fireblend:
+    git:
+      url: https://github.com/darter/fireblend
+      path: fireblend/
 
 dev_dependencies:
   test: ^1.0.0

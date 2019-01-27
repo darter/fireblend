@@ -2,7 +2,7 @@ import 'dart:async';
 
 import 'package:firebase_messaging/firebase_messaging.dart';
 
-import 'package:fireblend_mobile/src/temp/fireblend.dart';
+import 'package:fireblend/fireblend.dart';
 
 class FireblendMessagingMobile extends FireblendMessaging {
   FirebaseMessaging _messaging;

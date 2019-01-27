@@ -4,7 +4,7 @@ import 'dart:typed_data';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 
-import 'package:fireblend_mobile/src/temp/fireblend.dart';
+import 'package:fireblend/fireblend.dart';
 
 class FireblendStorageMobile extends FireblendStorage {
   FirebaseStorage _storage;

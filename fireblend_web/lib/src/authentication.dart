@@ -1,6 +1,6 @@
 import 'package:firebase/firebase.dart' as fb;
 
-import 'package:fireblend_web/src/temp/fireblend.dart';
+import 'package:fireblend/fireblend.dart';
 
 class FireblendAuthWeb extends FireblendAuth {
   fb.Auth _auth;

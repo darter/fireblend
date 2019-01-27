@@ -6,7 +6,7 @@ export 'src/messaging.dart';
 export 'src/storage.dart';
 
 import 'package:firebase/firebase.dart' as fb;
-import 'package:fireblend_web/src/temp/fireblend.dart';
+import 'package:fireblend/fireblend.dart';
 
 import 'src/authentication.dart';
 import 'src/database.dart';

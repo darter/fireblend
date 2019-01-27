@@ -1,7 +1,7 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_database/firebase_database.dart';
 
-import 'package:fireblend_mobile/src/temp/fireblend.dart';
+import 'package:fireblend/fireblend.dart';
 
 class FireblendDatabaseMobile extends FireblendDatabase {
   FirebaseDatabase _database;

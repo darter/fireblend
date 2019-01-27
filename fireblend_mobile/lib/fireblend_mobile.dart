@@ -7,7 +7,7 @@ export 'src/storage.dart';
 
 import 'dart:io' show Platform;
 import 'package:firebase_core/firebase_core.dart';
-import 'package:fireblend_mobile/src/temp/fireblend.dart';
+import 'package:fireblend/fireblend.dart';
 
 import 'src/authentication.dart';
 import 'src/database.dart';

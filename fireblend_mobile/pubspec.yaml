@@ -5,7 +5,7 @@ author:
 homepage:
 
 environment:
-  sdk: ">=2.0.0-dev.68.0 <3.0.0"
+  sdk: ">=2.0.0 <3.0.0"
 
 dependencies:
   flutter:
@@ -15,6 +15,10 @@ dependencies:
   firebase_storage: ^1.0.4
   firebase_auth: ^0.6.6
   firebase_messaging: ^2.1.0
+  fireblend:
+    git:
+      url: https://github.com/darter/fireblend
+      path: fireblend/
 
 dev_dependencies:
   flutter_test:
