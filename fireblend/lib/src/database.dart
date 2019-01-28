@@ -33,6 +33,7 @@ abstract class FireblendQuery {
   FireblendQuery orderByKey();
   FireblendQuery orderByValue();
   FireblendQuery orderByPriority();
+  String getPath();
 }
 
 abstract class FireblendEvent {

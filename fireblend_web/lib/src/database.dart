@@ -159,6 +159,11 @@ class FireblendQueryWeb extends FireblendQuery {
     return FireblendQueryWeb._internal(_query.startAt(value, key));
   }
 
+  @override
+  String getPath() {
+    String url = _query.toString();
+    return url.substring(url.indexOf("/", 8) + 1, url.length);
+  }
 }
 
 class FireblendEventWeb extends FireblendEvent {

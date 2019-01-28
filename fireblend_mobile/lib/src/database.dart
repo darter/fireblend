@@ -161,6 +161,11 @@ class FireblendQueryMobile extends FireblendQuery {
   FireblendQueryMobile startAt(value, {String key}) {
     return FireblendQueryMobile._internal(_query.startAt(value, key: key));
   }
+
+  @override
+  String getPath() {
+    return _query.path;
+  }
 }
 
 class FireblendEventMobile extends FireblendEvent {
