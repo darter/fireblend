@@ -14,12 +14,14 @@ class FireblendAuthWeb extends FireblendAuth {
       String email, String password) async {
     fb.UserCredential credential =
         await _auth.createUserWithEmailAndPassword(email, password);
-    return FireblendUserWeb._internal(credential.user);
+    fb.User user = credential?.user;
+    return user != null ? FireblendUserWeb._internal(user) : null;
   }
 
   @override
   Future<FireblendUserWeb> currentUser() async {
-    return FireblendUserWeb._internal(_auth.currentUser);
+    fb.User user = _auth.currentUser;
+    return user != null ? FireblendUserWeb._internal(user) : null;
   }
 
   @override
@@ -33,15 +35,18 @@ class FireblendAuthWeb extends FireblendAuth {
     fb.AuthCredential auth = fb.EmailAuthProvider.credential(email, password);
     fb.UserCredential credential =
         await _auth.currentUser.linkAndRetrieveDataWithCredential(auth);
-    return FireblendUserWeb._internal(credential.user);
+    fb.User user = credential?.user;
+    return user != null ? FireblendUserWeb._internal(user) : null;
   }
 
   @override
-  Future<FireblendUserWeb> linkWithFacebookCredential(String accessToken) async {
+  Future<FireblendUserWeb> linkWithFacebookCredential(
+      String accessToken) async {
     fb.AuthCredential auth = fb.FacebookAuthProvider.credential(accessToken);
     fb.UserCredential credential =
         await _auth.currentUser.linkAndRetrieveDataWithCredential(auth);
-    return FireblendUserWeb._internal(credential.user);
+    fb.User user = credential?.user;
+    return user != null ? FireblendUserWeb._internal(user) : null;
   }
 
   @override
@@ -49,7 +54,8 @@ class FireblendAuthWeb extends FireblendAuth {
     fb.AuthCredential auth = fb.GithubAuthProvider.credential(token);
     fb.UserCredential credential =
         await _auth.currentUser.linkAndRetrieveDataWithCredential(auth);
-    return FireblendUserWeb._internal(credential.user);
+    fb.User user = credential?.user;
+    return user != null ? FireblendUserWeb._internal(user) : null;
   }
 
   @override
@@ -59,7 +65,8 @@ class FireblendAuthWeb extends FireblendAuth {
         fb.GoogleAuthProvider.credential(idToken, accessToken);
     fb.UserCredential credential =
         await _auth.currentUser.linkAndRetrieveDataWithCredential(auth);
-    return FireblendUserWeb._internal(credential.user);
+    fb.User user = credential?.user;
+    return user != null ? FireblendUserWeb._internal(user) : null;
   }
 
   @override
@@ -69,12 +76,13 @@ class FireblendAuthWeb extends FireblendAuth {
         fb.TwitterAuthProvider.credential(authTokenSecret, authTokenSecret);
     fb.UserCredential credential =
         await _auth.currentUser.linkAndRetrieveDataWithCredential(auth);
-    return FireblendUserWeb._internal(credential.user);
+    fb.User user = credential?.user;
+    return user != null ? FireblendUserWeb._internal(user) : null;
   }
 
   @override
-  Stream<FireblendUserWeb> get onAuthStateChanged =>
-      _auth.onAuthStateChanged.map((user) => FireblendUserWeb._internal(user));
+  Stream<FireblendUserWeb> get onAuthStateChanged => _auth.onAuthStateChanged
+      ?.map((user) => user != null ? FireblendUserWeb._internal(user) : null);
 
   @override
   Future reauthenticateWithEmailAndPassword(
@@ -82,7 +90,8 @@ class FireblendAuthWeb extends FireblendAuth {
     fb.AuthCredential auth = fb.EmailAuthProvider.credential(email, password);
     fb.UserCredential credential = await _auth.currentUser
         .reauthenticateAndRetrieveDataWithCredential(auth);
-    return FireblendUserWeb._internal(credential.user);
+    fb.User user = credential?.user;
+    return user != null ? FireblendUserWeb._internal(user) : null;
   }
 
   @override
@@ -90,7 +99,8 @@ class FireblendAuthWeb extends FireblendAuth {
     fb.AuthCredential auth = fb.FacebookAuthProvider.credential(accessToken);
     fb.UserCredential credential = await _auth.currentUser
         .reauthenticateAndRetrieveDataWithCredential(auth);
-    return FireblendUserWeb._internal(credential.user);
+    fb.User user = credential?.user;
+    return user != null ? FireblendUserWeb._internal(user) : null;
   }
 
   @override
@@ -98,7 +108,8 @@ class FireblendAuthWeb extends FireblendAuth {
     fb.AuthCredential auth = fb.GithubAuthProvider.credential(token);
     fb.UserCredential credential = await _auth.currentUser
         .reauthenticateAndRetrieveDataWithCredential(auth);
-    return FireblendUserWeb._internal(credential.user);
+    fb.User user = credential?.user;
+    return user != null ? FireblendUserWeb._internal(user) : null;
   }
 
   @override
@@ -108,7 +119,8 @@ class FireblendAuthWeb extends FireblendAuth {
         fb.GoogleAuthProvider.credential(idToken, accessToken);
     fb.UserCredential credential = await _auth.currentUser
         .reauthenticateAndRetrieveDataWithCredential(auth);
-    return FireblendUserWeb._internal(credential.user);
+    fb.User user = credential?.user;
+    return user != null ? FireblendUserWeb._internal(user) : null;
   }
 
   @override
@@ -118,7 +130,8 @@ class FireblendAuthWeb extends FireblendAuth {
         fb.TwitterAuthProvider.credential(authToken, authTokenSecret);
     fb.UserCredential credential = await _auth.currentUser
         .reauthenticateAndRetrieveDataWithCredential(auth);
-    return FireblendUserWeb._internal(credential.user);
+    fb.User user = credential?.user;
+    return user != null ? FireblendUserWeb._internal(user) : null;
   }
 
   @override
@@ -134,13 +147,15 @@ class FireblendAuthWeb extends FireblendAuth {
   @override
   Future<FireblendUserWeb> signInAnonymously() async {
     fb.UserCredential credential = await _auth.signInAnonymously();
-    return FireblendUserWeb._internal(credential.user);
+    fb.User user = credential?.user;
+    return user != null ? FireblendUserWeb._internal(user) : null;
   }
 
   @override
   Future<FireblendUserWeb> signInWithCustomToken(String token) async {
     fb.UserCredential credential = await _auth.signInWithCustomToken(token);
-    return FireblendUserWeb._internal(credential.user);
+    fb.User user = credential?.user;
+    return user != null ? FireblendUserWeb._internal(user) : null;
   }
 
   @override
@@ -148,7 +163,8 @@ class FireblendAuthWeb extends FireblendAuth {
       String email, String password) async {
     fb.UserCredential credential =
         await _auth.signInWithEmailAndPassword(email, password);
-    return FireblendUserWeb._internal(credential.user);
+    fb.User user = credential?.user;
+    return user != null ? FireblendUserWeb._internal(user) : null;
   }
 
   @override
@@ -156,7 +172,8 @@ class FireblendAuthWeb extends FireblendAuth {
     fb.AuthCredential auth = fb.FacebookAuthProvider.credential(accessToken);
     fb.UserCredential credential =
         await _auth.signInAndRetrieveDataWithCredential(auth);
-    return FireblendUserWeb._internal(credential.user);
+    fb.User user = credential?.user;
+    return user != null ? FireblendUserWeb._internal(user) : null;
   }
 
   @override
@@ -164,7 +181,8 @@ class FireblendAuthWeb extends FireblendAuth {
     fb.AuthCredential auth = fb.GithubAuthProvider.credential(token);
     fb.UserCredential credential =
         await _auth.signInAndRetrieveDataWithCredential(auth);
-    return FireblendUserWeb._internal(credential.user);
+    fb.User user = credential?.user;
+    return user != null ? FireblendUserWeb._internal(user) : null;
   }
 
   @override
@@ -174,7 +192,8 @@ class FireblendAuthWeb extends FireblendAuth {
         fb.GoogleAuthProvider.credential(idToken, accessToken);
     fb.UserCredential credential =
         await _auth.signInAndRetrieveDataWithCredential(auth);
-    return FireblendUserWeb._internal(credential.user);
+    fb.User user = credential?.user;
+    return user != null ? FireblendUserWeb._internal(user) : null;
   }
 
   @override
@@ -184,7 +203,8 @@ class FireblendAuthWeb extends FireblendAuth {
         fb.TwitterAuthProvider.credential(authToken, authTokenSecret);
     fb.UserCredential credential =
         await _auth.signInAndRetrieveDataWithCredential(auth);
-    return FireblendUserWeb._internal(credential.user);
+    fb.User user = credential?.user;
+    return user != null ? FireblendUserWeb._internal(user) : null;
   }
 
   @override
@@ -215,13 +235,15 @@ class FireblendUserWeb extends FireblendUserInfoWeb implements FireblendUser {
   bool get isEmailVerified => _user.emailVerified;
 
   @override
-  FireblendUserMetadataWeb get metadata =>
-      FireblendUserMetadataWeb._internal(_user.metadata);
+  FireblendUserMetadataWeb get metadata => _user.metadata != null
+      ? FireblendUserMetadataWeb._internal(_user.metadata)
+      : null;
 
   @override
-  List<FireblendUserInfoWeb> get providerData => _user.providerData
-      .map((info) => FireblendUserInfoWeb._internal(info))
-      .toList();
+  List<FireblendUserInfoWeb> get providerData => _user?.providerData
+      ?.map(
+          (info) => info != null ? FireblendUserInfoWeb._internal(info) : null)
+      ?.toList();
 
   @override
   Future reload() {

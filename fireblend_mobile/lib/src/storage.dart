@@ -29,8 +29,13 @@ class FireblendStorageMobile extends FireblendStorage {
   @override
   FireblendStorageReferenceMobile ref([String path]) {
     StorageReference reference = _storage.ref();
-    if (path != null)
-      return FireblendStorageReferenceMobile._internal(reference.child(path));
+    if (reference == null) return null;
+    if (path != null) {
+      StorageReference aux = reference.child(path);
+      return aux != null
+          ? FireblendStorageReferenceMobile._internal(aux)
+          : null;
+    }
     return FireblendStorageReferenceMobile._internal(reference);
   }
 
@@ -40,7 +45,10 @@ class FireblendStorageMobile extends FireblendStorage {
     int endIndex = url.indexOf("?");
     String trimmed = url.substring(startIndex, endIndex);
     String filename = trimmed.replaceAll("%3A", ":").replaceAll("%2F", "/");
-    return FireblendStorageReferenceMobile._internal(_storage.ref().child(filename));
+    StorageReference reference = _storage.ref().child(filename);
+    return reference != null
+        ? FireblendStorageReferenceMobile._internal(reference)
+        : null;
   }
 
   @override
@@ -63,7 +71,10 @@ class FireblendStorageReferenceMobile extends FireblendStorageReference {
 
   @override
   FireblendStorageReferenceMobile child(String path) {
-    return FireblendStorageReferenceMobile._internal(_reference.child(path));
+    StorageReference reference = _reference.child(path);
+    return reference != null
+        ? FireblendStorageReferenceMobile._internal(reference)
+        : null;
   }
 
   @override
@@ -82,9 +93,11 @@ class FireblendStorageReferenceMobile extends FireblendStorageReference {
   }
 
   @override
-  Future<FireblendStorageMetadataMobile>getMetadata() async {
+  Future<FireblendStorageMetadataMobile> getMetadata() async {
     StorageMetadata metadata = await _reference.getMetadata();
-    return FireblendStorageMetadataMobile._internal(metadata);
+    return metadata != null
+        ? FireblendStorageMetadataMobile._internal(metadata)
+        : null;
   }
 
   @override
@@ -99,28 +112,37 @@ class FireblendStorageReferenceMobile extends FireblendStorageReference {
 
   @override
   FireblendStorageMobile getStorage() {
-    return FireblendStorageMobile._internal(_reference.getStorage());
+    FirebaseStorage storage = _reference.getStorage();
+    return storage != null ? FireblendStorageMobile._internal(storage) : null;
   }
 
   @override
   FireblendStorageReferenceMobile parent() {
-    return FireblendStorageReferenceMobile._internal(_reference.getParent());
+    StorageReference reference = _reference.getParent();
+    return reference != null
+        ? FireblendStorageReferenceMobile._internal(reference)
+        : null;
   }
 
   @override
   FireblendUploadTaskMobile put(data, [FireblendStorageMetadata metadata]) {
     StorageMetadata aux = (metadata as FireblendStorageMetadataMobile).metadata;
+    StorageUploadTask task;
     if (data is File)
-      return FireblendUploadTaskMobile._internal(_reference.putFile(data, aux));
+      task = _reference.putFile(data, aux);
     else if (data is Uint8List)
-      return FireblendUploadTaskMobile._internal(_reference.putData(data, aux));
+      task = _reference.putData(data, aux);
     else
       throw UnsupportedError("Data type is not supported.");
+    return task != null ? FireblendUploadTaskMobile._internal(task) : null;
   }
 
   @override
   FireblendStorageReferenceMobile root() {
-    return FireblendStorageReferenceMobile._internal(_reference.getRoot());
+    StorageReference reference = _reference.getRoot();
+    return reference != null
+        ? FireblendStorageReferenceMobile._internal(reference)
+        : null;
   }
 
   @override
@@ -128,7 +150,7 @@ class FireblendStorageReferenceMobile extends FireblendStorageReference {
       FireblendStorageMetadata metadata) async {
     StorageMetadata aux = (metadata as FireblendStorageMetadataMobile).metadata;
     StorageMetadata res = await _reference.updateMetadata(aux);
-    return FireblendStorageMetadataMobile._internal(res);
+    return res != null ? FireblendStorageMetadataMobile._internal(res) : null;
   }
 }
 
@@ -155,13 +177,13 @@ class FireblendStorageMetadataMobile extends FireblendStorageMetadata {
           customMetadata: customMetadata,
         ),
         super(
-          md5Hash: null,
-          cacheControl: cacheControl,
-          contentDisposition: contentDisposition,
-          contentEncoding: contentEncoding,
-          contentLanguage: contentLanguage,
-          contentType: contentType,
-          customMetadata: customMetadata);
+            md5Hash: null,
+            cacheControl: cacheControl,
+            contentDisposition: contentDisposition,
+            contentEncoding: contentEncoding,
+            contentLanguage: contentLanguage,
+            contentType: contentType,
+            customMetadata: customMetadata);
 
   @override
   String get bucket => _metadata.bucket;
@@ -223,7 +245,8 @@ class FireblendUploadTaskMobile extends FireblendUploadTask {
 
   @override
   Stream<FireblendUploadSnapshotMobile> get onStateChanged =>
-      _task.events.map((event) => FireblendUploadSnapshotMobile._event(event));
+      _task.events?.map((event) =>
+          event != null ? FireblendUploadSnapshotMobile._event(event) : null);
 
   @override
   void pause() {
@@ -260,11 +283,14 @@ class FireblendUploadSnapshotMobile extends FireblendUploadSnapshot {
 
   @override
   FireblendStorageMetadataMobile get metadata =>
-      FireblendStorageMetadataMobile._internal(_snapshot.storageMetadata);
+      _snapshot.storageMetadata != null
+          ? FireblendStorageMetadataMobile._internal(_snapshot.storageMetadata)
+          : null;
 
   @override
-  FireblendStorageReferenceMobile get ref =>
-      FireblendStorageReferenceMobile._internal(_snapshot.ref);
+  FireblendStorageReferenceMobile get ref => _snapshot.ref != null
+      ? FireblendStorageReferenceMobile._internal(_snapshot.ref)
+      : null;
 
   @override
   FireblendUploadTaskState get state {

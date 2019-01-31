@@ -23,12 +23,18 @@ class FireblendStorageWeb extends FireblendStorage {
 
   @override
   FireblendStorageReferenceWeb ref([String path]) {
-    return FireblendStorageReferenceWeb._internal(_storage.ref(path));
+    fb.StorageReference reference = _storage.ref(path);
+    return reference != null
+        ? FireblendStorageReferenceWeb._internal(reference)
+        : null;
   }
 
   @override
   FireblendStorageReferenceWeb refFromUrl(String url) {
-    return FireblendStorageReferenceWeb._internal(_storage.refFromURL(url));
+    fb.StorageReference reference = _storage.refFromURL(url);
+    return reference != null
+        ? FireblendStorageReferenceWeb._internal(reference)
+        : null;
   }
 
   @override
@@ -51,7 +57,10 @@ class FireblendStorageReferenceWeb extends FireblendStorageReference {
 
   @override
   FireblendStorageReferenceWeb child(String path) {
-    return FireblendStorageReferenceWeb._internal(_reference.child(path));
+    fb.StorageReference reference = _reference.child(path);
+    return reference != null
+        ? FireblendStorageReferenceWeb._internal(reference)
+        : null;
   }
 
   @override
@@ -72,7 +81,9 @@ class FireblendStorageReferenceWeb extends FireblendStorageReference {
   @override
   Future<FireblendStorageMetadataWeb> getMetadata() async {
     fb.FullMetadata metadata = await _reference.getMetadata();
-    return FireblendStorageMetadataWeb._full(metadata);
+    return metadata != null
+        ? FireblendStorageMetadataWeb._full(metadata)
+        : null;
   }
 
   @override
@@ -87,24 +98,32 @@ class FireblendStorageReferenceWeb extends FireblendStorageReference {
 
   @override
   FireblendStorageWeb getStorage() {
-    return FireblendStorageWeb._internal(_reference.storage);
+    fb.Storage storage = _reference.storage;
+    return storage != null ? FireblendStorageWeb._internal(storage) : null;
   }
 
   @override
   FireblendStorageReferenceWeb parent() {
-    return FireblendStorageReferenceWeb._internal(_reference.parent);
+    fb.StorageReference reference = _reference.parent;
+    return reference != null
+        ? FireblendStorageReferenceWeb._internal(reference)
+        : null;
   }
 
   @override
   FireblendUploadTaskWeb put(data, [FireblendStorageMetadata metadata]) {
     fb.UploadMetadata aux =
         (metadata as FireblendStorageMetadataWeb).uploadMetadata;
-    return FireblendUploadTaskWeb._internal(_reference.put(data, aux));
+    fb.UploadTask task = _reference.put(data, aux);
+    return task != null ? FireblendUploadTaskWeb._internal(task) : null;
   }
 
   @override
   FireblendStorageReferenceWeb root() {
-    return FireblendStorageReferenceWeb._internal(_reference.root);
+    fb.StorageReference reference = _reference.root;
+    return reference != null
+        ? FireblendStorageReferenceWeb._internal(reference)
+        : null;
   }
 
   @override
@@ -113,7 +132,7 @@ class FireblendStorageReferenceWeb extends FireblendStorageReference {
     fb.SettableMetadata aux =
         (metadata as FireblendStorageMetadataWeb).settableMetadata;
     fb.FullMetadata res = await _reference.updateMetadata(aux);
-    return FireblendStorageMetadataWeb._full(res);
+    return res != null ? FireblendStorageMetadataWeb._full(res) : null;
   }
 }
 
@@ -154,13 +173,13 @@ class FireblendStorageMetadataWeb extends FireblendStorageMetadata {
           customMetadata: customMetadata,
         ),
         super(
-          md5Hash: md5Hash,
-          cacheControl: cacheControl,
-          contentDisposition: contentDisposition,
-          contentEncoding: contentEncoding,
-          contentLanguage: contentLanguage,
-          contentType: contentType,
-          customMetadata: customMetadata);
+            md5Hash: md5Hash,
+            cacheControl: cacheControl,
+            contentDisposition: contentDisposition,
+            contentEncoding: contentEncoding,
+            contentLanguage: contentLanguage,
+            contentType: contentType,
+            customMetadata: customMetadata);
 
   fb.FullMetadata get fullMetadata => _fullMetadata;
 
@@ -176,9 +195,7 @@ class FireblendStorageMetadataWeb extends FireblendStorageMetadata {
       ? _fullMetadata.cacheControl
       : _uploadMetadata != null
           ? _uploadMetadata.cacheControl
-          : _settableMetadata != null
-              ? _settableMetadata.cacheControl
-              : null;
+          : _settableMetadata != null ? _settableMetadata.cacheControl : null;
 
   @override
   String get contentDisposition => _fullMetadata != null
@@ -212,18 +229,14 @@ class FireblendStorageMetadataWeb extends FireblendStorageMetadata {
       ? _fullMetadata.contentType
       : _uploadMetadata != null
           ? _uploadMetadata.contentType
-          : _settableMetadata != null
-              ? _settableMetadata.contentType
-              : null;
+          : _settableMetadata != null ? _settableMetadata.contentType : null;
 
   @override
   Map<String, String> get customMetadata => _fullMetadata != null
       ? _fullMetadata.customMetadata
       : _uploadMetadata != null
           ? _uploadMetadata.customMetadata
-          : _settableMetadata != null
-              ? _settableMetadata.customMetadata
-              : null;
+          : _settableMetadata != null ? _settableMetadata.customMetadata : null;
 
   @override
   String get generation =>
@@ -232,9 +245,7 @@ class FireblendStorageMetadataWeb extends FireblendStorageMetadata {
   @override
   String get md5Hash => _fullMetadata != null
       ? _fullMetadata.md5Hash
-      : _uploadMetadata != null
-          ? _uploadMetadata.md5Hash
-          : null;
+      : _uploadMetadata != null ? _uploadMetadata.md5Hash : null;
 
   @override
   String get metadataGeneration =>
@@ -273,8 +284,10 @@ class FireblendUploadTaskWeb extends FireblendUploadTask {
   }
 
   @override
-  Stream<FireblendUploadSnapshotWeb> get onStateChanged => _task.onStateChanged
-      .map((snapshot) => FireblendUploadSnapshotWeb._internal(snapshot));
+  Stream<FireblendUploadSnapshotWeb> get onStateChanged =>
+      _task.onStateChanged?.map((snapshot) => snapshot != null
+          ? FireblendUploadSnapshotWeb._internal(snapshot)
+          : null);
 
   @override
   void pause() {
@@ -284,7 +297,9 @@ class FireblendUploadTaskWeb extends FireblendUploadTask {
   @override
   Future<FireblendUploadSnapshotWeb> result() async {
     fb.UploadTaskSnapshot snapshot = await _task.future;
-    return FireblendUploadSnapshotWeb._internal(snapshot);
+    return snapshot != null
+        ? FireblendUploadSnapshotWeb._internal(snapshot)
+        : null;
   }
 
   @override
@@ -304,12 +319,14 @@ class FireblendUploadSnapshotWeb extends FireblendUploadSnapshot {
   int get bytesTransferred => _snapshot.bytesTransferred;
 
   @override
-  FireblendStorageMetadataWeb get metadata =>
-      FireblendStorageMetadataWeb._full(_snapshot.metadata);
+  FireblendStorageMetadataWeb get metadata => _snapshot.metadata != null
+      ? FireblendStorageMetadataWeb._full(_snapshot.metadata)
+      : null;
 
   @override
-  FireblendStorageReferenceWeb get ref =>
-      FireblendStorageReferenceWeb._internal(_snapshot.ref);
+  FireblendStorageReferenceWeb get ref => _snapshot.ref != null
+      ? FireblendStorageReferenceWeb._internal(_snapshot.ref)
+      : null;
 
   @override
   FireblendUploadTaskState get state {

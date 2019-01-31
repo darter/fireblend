@@ -16,7 +16,7 @@ class FireblendMessagingWeb extends FireblendMessaging {
 
   @override
   Stream<Map<String, dynamic>> get onMessage =>
-      _messaging.onMessage.map((payload) => payload.data);
+      _messaging.onMessage?.map((payload) => payload?.data);
 
   @override
   Stream get onTokenRefresh => _messaging.onTokenRefresh;

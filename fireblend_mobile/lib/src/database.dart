@@ -6,7 +6,8 @@ import 'package:fireblend/fireblend.dart';
 class FireblendDatabaseMobile extends FireblendDatabase {
   FirebaseDatabase _database;
 
-  FireblendDatabaseMobile(FirebaseApp app) : _database = FirebaseDatabase(app: app);
+  FireblendDatabaseMobile(FirebaseApp app)
+      : _database = FirebaseDatabase(app: app);
 
   FirebaseDatabase get database => _database;
 
@@ -24,7 +25,9 @@ class FireblendDatabaseMobile extends FireblendDatabase {
   FireblendDatabaseReferenceMobile ref([String path]) {
     DatabaseReference reference = _database.reference();
     if (path != null) reference = reference.child(path);
-    return FireblendDatabaseReferenceMobile._internal(reference);
+    return reference != null
+        ? FireblendDatabaseReferenceMobile._internal(reference)
+        : null;
   }
 }
 
@@ -37,7 +40,10 @@ class FireblendDatabaseReferenceMobile extends FireblendQueryMobile
 
   @override
   FireblendDatabaseReferenceMobile child(String path) {
-    return FireblendDatabaseReferenceMobile._internal(_reference.child(path));
+    DatabaseReference reference = _reference.child(path);
+    return reference != null
+        ? FireblendDatabaseReferenceMobile._internal(reference)
+        : null;
   }
 
   @override
@@ -45,14 +51,19 @@ class FireblendDatabaseReferenceMobile extends FireblendQueryMobile
 
   @override
   FireblendDatabaseReferenceMobile parent() {
-    return FireblendDatabaseReferenceMobile._internal(_reference.parent());
+    DatabaseReference reference = _reference.parent();
+    return reference != null
+        ? FireblendDatabaseReferenceMobile._internal(reference)
+        : null;
   }
 
   @override
   FireblendDatabaseReferenceMobile push([value]) {
     DatabaseReference reference = _reference.push();
     if (value != null) reference.set(value);
-    return FireblendDatabaseReferenceMobile._internal(reference);
+    return reference != null
+        ? FireblendDatabaseReferenceMobile._internal(reference)
+        : null;
   }
 
   @override
@@ -62,7 +73,10 @@ class FireblendDatabaseReferenceMobile extends FireblendQueryMobile
 
   @override
   FireblendDatabaseReferenceMobile root() {
-    return FireblendDatabaseReferenceMobile._internal(_reference.root());
+    DatabaseReference reference = _reference.root();
+    return reference != null
+        ? FireblendDatabaseReferenceMobile._internal(reference)
+        : null;
   }
 
   @override
@@ -88,78 +102,97 @@ class FireblendQueryMobile extends FireblendQuery {
 
   @override
   FireblendQueryMobile endAt(value, {String key}) {
-    return FireblendQueryMobile._internal(_query.endAt(value, key: key));
+    Query query = _query.endAt(value, key: key);
+    return query != null ? FireblendQueryMobile._internal(query) : null;
   }
 
   @override
   FireblendQueryMobile equalTo(value, {String key}) {
-    return FireblendQueryMobile._internal(_query.equalTo(value, key: key));
+    Query query = _query.equalTo(value, key: key);
+    return query != null ? FireblendQueryMobile._internal(query) : null;
   }
 
   @override
   FireblendQueryMobile limitToFirst(int limit) {
-    return FireblendQueryMobile._internal(_query.limitToFirst(limit));
+    Query query = _query.limitToFirst(limit);
+    return query != null ? FireblendQueryMobile._internal(query) : null;
   }
 
   @override
   FireblendQueryMobile limitToLast(int limit) {
-    return FireblendQueryMobile._internal(_query.limitToLast(limit));
+    Query query = _query.limitToLast(limit);
+    return query != null ? FireblendQueryMobile._internal(query) : null;
   }
 
   @override
-  Stream<FireblendEventMobile>  get onChildAdded => _query.onChildAdded
-      .map((Event event) => FireblendEventMobile._internal(event));
+  Stream<FireblendEventMobile> get onChildAdded =>
+      _query.onChildAdded?.map((Event event) =>
+          event != null ? FireblendEventMobile._internal(event) : null);
 
   @override
-  Stream<FireblendEventMobile>  get onChildChanged => _query.onChildChanged
-      .map((Event event) => FireblendEventMobile._internal(event));
+  Stream<FireblendEventMobile> get onChildChanged =>
+      _query.onChildChanged?.map((Event event) =>
+          event != null ? FireblendEventMobile._internal(event) : null);
 
   @override
-  Stream<FireblendEventMobile>  get onChildMoved => _query.onChildMoved
-      .map((Event event) => FireblendEventMobile._internal(event));
+  Stream<FireblendEventMobile> get onChildMoved =>
+      _query.onChildMoved?.map((Event event) =>
+          event != null ? FireblendEventMobile._internal(event) : null);
 
   @override
-  Stream<FireblendEventMobile>  get onChildRemoved => _query.onChildRemoved
-      .map((Event event) => FireblendEventMobile._internal(event));
+  Stream<FireblendEventMobile> get onChildRemoved =>
+      _query.onChildRemoved?.map((Event event) =>
+          event != null ? FireblendEventMobile._internal(event) : null);
 
   @override
-  Stream<FireblendEventMobile>  get onValue => _query.onValue
-      .map((Event event) => FireblendEventMobile._internal(event));
+  Stream<FireblendEventMobile> get onValue =>
+      _query.onValue?.map((Event event) =>
+          event != null ? FireblendEventMobile._internal(event) : null);
 
   @override
   Future<FireblendDataSnapshotMobile> once() async {
     DataSnapshot snapshot = await _query.once();
-    return FireblendDataSnapshotMobile._internal(snapshot);
+    return snapshot != null
+        ? FireblendDataSnapshotMobile._internal(snapshot)
+        : null;
   }
 
   @override
   FireblendQueryMobile orderByChild(String key) {
-    return FireblendQueryMobile._internal(_query.orderByChild(key));
+    Query query = _query.orderByChild(key);
+    return query != null ? FireblendQueryMobile._internal(query) : null;
   }
 
   @override
   FireblendQueryMobile orderByKey() {
-    return FireblendQueryMobile._internal(_query.orderByKey());
+    Query query = _query.orderByKey();
+    return query != null ? FireblendQueryMobile._internal(query) : null;
   }
 
   @override
   FireblendQueryMobile orderByPriority() {
-    return FireblendQueryMobile._internal(_query.orderByPriority());
+    Query query = _query.orderByPriority();
+    return query != null ? FireblendQueryMobile._internal(query) : null;
   }
 
   @override
   FireblendQueryMobile orderByValue() {
-    return FireblendQueryMobile._internal(_query.orderByValue());
+    Query query = _query.orderByValue();
+    return query != null ? FireblendQueryMobile._internal(query) : null;
   }
 
   @override
   FireblendDatabaseReferenceMobile reference() {
-    return FireblendDatabaseReferenceMobile._internal(_query.reference());
+    DatabaseReference reference = _query.reference();
+    return reference != null
+        ? FireblendDatabaseReferenceMobile._internal(reference)
+        : null;
   }
 
   @override
   FireblendQueryMobile startAt(value, {String key}) {
-    return FireblendQueryMobile._internal(_query.startAt(value, key: key));
+    Query query = _query.startAt(value, key: key);
+    return query != null ? FireblendQueryMobile._internal(query) : null;
   }
 
   @override
@@ -177,8 +210,9 @@ class FireblendEventMobile extends FireblendEvent {
   String get previousSiblingKey => _event.previousSiblingKey;
 
   @override
-  FireblendDataSnapshotMobile get snapshot =>
-      FireblendDataSnapshotMobile._internal(_event.snapshot);
+  FireblendDataSnapshotMobile get snapshot => _event.snapshot != null
+      ? FireblendDataSnapshotMobile._internal(_event.snapshot)
+      : null;
 }
 
 class FireblendDataSnapshotMobile extends FireblendDataSnapshot {
