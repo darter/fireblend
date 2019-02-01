@@ -126,7 +126,14 @@ class FireblendStorageReferenceMobile extends FireblendStorageReference {
 
   @override
   FireblendUploadTaskMobile put(data, [FireblendStorageMetadata metadata]) {
-    StorageMetadata aux = (metadata as FireblendStorageMetadataMobile).metadata;
+    StorageMetadata aux = StorageMetadata(
+      cacheControl: metadata.cacheControl,
+      contentDisposition: metadata.contentDisposition,
+      contentEncoding: metadata.contentEncoding,
+      contentLanguage: metadata.contentLanguage,
+      contentType: metadata.contentType,
+      customMetadata: metadata.customMetadata,
+    );
     StorageUploadTask task;
     if (data is File)
       task = _reference.putFile(data, aux);
@@ -148,7 +155,14 @@ class FireblendStorageReferenceMobile extends FireblendStorageReference {
   @override
   Future<FireblendStorageMetadataMobile> updateMetadata(
       FireblendStorageMetadata metadata) async {
-    StorageMetadata aux = (metadata as FireblendStorageMetadataMobile).metadata;
+    StorageMetadata aux = StorageMetadata(
+      cacheControl: metadata.cacheControl,
+      contentDisposition: metadata.contentDisposition,
+      contentEncoding: metadata.contentEncoding,
+      contentLanguage: metadata.contentLanguage,
+      contentType: metadata.contentType,
+      customMetadata: metadata.customMetadata,
+    );
     StorageMetadata res = await _reference.updateMetadata(aux);
     return res != null ? FireblendStorageMetadataMobile._internal(res) : null;
   }
