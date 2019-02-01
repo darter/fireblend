@@ -126,7 +126,7 @@ class FireblendStorageReferenceWeb extends FireblendStorageReference {
     fb.UploadTask task;
     if (data is String)
       task = _reference.putString(data);
-    else if (data is Blob)
+    else if (data is Blob || data is List<int>)
       task = _reference.put(data, aux);
     else throw UnsupportedError("Data type is not supported.");
     return task != null ? FireblendUploadTaskWeb._internal(task) : null;
