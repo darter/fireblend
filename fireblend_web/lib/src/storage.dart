@@ -124,9 +124,9 @@ class FireblendStorageReferenceWeb extends FireblendStorageReference {
         customMetadata: metadata.customMetadata,
     );
     fb.UploadTask task;
-    if(data is String)
+    if (data is String)
       task = _reference.putString(data);
-    else if (task is Blob)
+    else if (data is Blob)
       task = _reference.put(data, aux);
     else throw UnsupportedError("Data type is not supported.");
     return task != null ? FireblendUploadTaskWeb._internal(task) : null;
