@@ -134,13 +134,9 @@ class FireblendStorageReferenceMobile extends FireblendStorageReference {
       contentType: metadata.contentType,
       customMetadata: metadata.customMetadata,
     );
-    StorageUploadTask task;
-    if (data is File)
-      task = _reference.putFile(data, aux);
-    else if (data is Uint8List)
-      task = _reference.putData(data, aux);
-    else
+    if (!(data is File || data is List<int>))
       throw UnsupportedError("Data type is not supported.");
+    StorageUploadTask task = _reference.putFile(data, aux);
     return task != null ? FireblendUploadTaskMobile._internal(task) : null;
   }
 

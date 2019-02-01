@@ -1,3 +1,5 @@
+import 'dart:html';
+
 import 'package:firebase/firebase.dart' as fb;
 
 import 'package:fireblend/fireblend.dart';
@@ -121,7 +123,12 @@ class FireblendStorageReferenceWeb extends FireblendStorageReference {
         contentType: metadata.contentType,
         customMetadata: metadata.customMetadata,
     );
-    fb.UploadTask task = _reference.put(data, aux);
+    fb.UploadTask task;
+    if(data is String)
+      task = _reference.putString(data);
+    else if (task is Blob)
+      task = _reference.put(data, aux);
+    else throw UnsupportedError("Data type is not supported.");
     return task != null ? FireblendUploadTaskWeb._internal(task) : null;
   }
 
