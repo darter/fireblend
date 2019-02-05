@@ -1,3 +1,4 @@
+import 'package:collection/collection.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_database/firebase_database.dart';
 
@@ -97,29 +98,36 @@ class FireblendDatabaseReferenceMobile extends FireblendQueryMobile
 
 class FireblendQueryMobile extends FireblendQuery {
   final Query _query;
+  final Map<String, dynamic> _parameters;
 
-  FireblendQueryMobile._internal(this._query);
+  FireblendQueryMobile._internal(this._query) : _parameters = Map();
 
   @override
   FireblendQueryMobile endAt(value, {String key}) {
+    _parameters["endAt"] = value;
+    _parameters["endAtKey"] = key;
     Query query = _query.endAt(value, key: key);
     return query != null ? FireblendQueryMobile._internal(query) : null;
   }
 
   @override
   FireblendQueryMobile equalTo(value, {String key}) {
+    _parameters["equalTo"] = value;
+    _parameters["equalToKey"] = key;
     Query query = _query.equalTo(value, key: key);
     return query != null ? FireblendQueryMobile._internal(query) : null;
   }
 
   @override
   FireblendQueryMobile limitToFirst(int limit) {
+    _parameters["limitToFirst"] = limit;
     Query query = _query.limitToFirst(limit);
     return query != null ? FireblendQueryMobile._internal(query) : null;
   }
 
   @override
   FireblendQueryMobile limitToLast(int limit) {
+    _parameters["limitToLast"] = limit;
     Query query = _query.limitToLast(limit);
     return query != null ? FireblendQueryMobile._internal(query) : null;
   }
@@ -159,24 +167,29 @@ class FireblendQueryMobile extends FireblendQuery {
 
   @override
   FireblendQueryMobile orderByChild(String key) {
+    _parameters["orderBy"] = "child";
+    _parameters["orderByChildKey"] = key;
     Query query = _query.orderByChild(key);
     return query != null ? FireblendQueryMobile._internal(query) : null;
   }
 
   @override
   FireblendQueryMobile orderByKey() {
+    _parameters["orderBy"] = "key";
     Query query = _query.orderByKey();
     return query != null ? FireblendQueryMobile._internal(query) : null;
   }
 
   @override
   FireblendQueryMobile orderByPriority() {
+    _parameters["orderBy"] = "priority";
     Query query = _query.orderByPriority();
     return query != null ? FireblendQueryMobile._internal(query) : null;
   }
 
   @override
   FireblendQueryMobile orderByValue() {
+    _parameters["orderBy"] = "value";
     Query query = _query.orderByValue();
     return query != null ? FireblendQueryMobile._internal(query) : null;
   }
@@ -191,6 +204,8 @@ class FireblendQueryMobile extends FireblendQuery {
 
   @override
   FireblendQueryMobile startAt(value, {String key}) {
+    _parameters["startAt"] = value;
+    _parameters["startAtKey"] = key;
     Query query = _query.startAt(value, key: key);
     return query != null ? FireblendQueryMobile._internal(query) : null;
   }
@@ -199,6 +214,24 @@ class FireblendQueryMobile extends FireblendQuery {
   String getPath() {
     return _query.path;
   }
+
+  @override
+  Map<String, dynamic> getParameters() {
+    return _parameters;
+  }
+
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+          other is FireblendQueryMobile &&
+              runtimeType == other.runtimeType &&
+              getPath() == other.getPath() &&
+              MapEquality().equals(_parameters, other._parameters);
+
+  @override
+  int get hashCode =>
+      getPath().hashCode ^
+      _parameters.hashCode;
 }
 
 class FireblendEventMobile extends FireblendEvent {

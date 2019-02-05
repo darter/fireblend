@@ -33,6 +33,7 @@ abstract class FireblendQuery {
   FireblendQuery orderByKey();
   FireblendQuery orderByValue();
   FireblendQuery orderByPriority();
+  Map<String, dynamic> getParameters();
   String getPath();
 }
 
