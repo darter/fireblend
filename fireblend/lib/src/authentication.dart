@@ -18,6 +18,7 @@ abstract class FireblendAuth {
   Future<FireblendUser> linkWithFacebookCredential(String accessToken);
   Future<FireblendUser> linkWithTwitterCredential(String authToken, String authTokenSecret);
   Future<FireblendUser> linkWithGithubCredential(String token);
+  // TODO: Move reauthentication to FireblendUser.
   Future reauthenticateWithEmailAndPassword(String email, String password);
   Future reauthenticateWithGoogleCredential(String idToken, String accessToken);
   Future reauthenticateWithFacebookCredential(String accessToken);
