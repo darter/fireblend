@@ -23,7 +23,7 @@ class FireblendMobile extends Fireblend{
 
   static Future<FireblendMobile> initialize([FireblendConfiguration config]) async {
     FirebaseApp app = config == null ? FirebaseApp.instance
-        : FirebaseApp.appNamed(config.projectId);
+        : await FirebaseApp.appNamed(config.projectId);
     if (app == null) {
       var googleApiKey = Platform.isAndroid
           ? config.androidGoogleAppId
