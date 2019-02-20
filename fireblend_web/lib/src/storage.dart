@@ -115,13 +115,13 @@ class FireblendStorageReferenceWeb extends FireblendStorageReference {
   @override
   FireblendUploadTaskWeb put(data, [FireblendStorageMetadata metadata]) {
     fb.UploadMetadata aux = fb.UploadMetadata(
-        md5Hash: metadata.md5Hash,
-        cacheControl: metadata.cacheControl,
-        contentDisposition: metadata.contentDisposition,
-        contentEncoding: metadata.contentEncoding,
-        contentLanguage: metadata.contentLanguage,
-        contentType: metadata.contentType,
-        customMetadata: metadata.customMetadata,
+        md5Hash: metadata?.md5Hash,
+        cacheControl: metadata?.cacheControl,
+        contentDisposition: metadata?.contentDisposition,
+        contentEncoding: metadata?.contentEncoding,
+        contentLanguage: metadata?.contentLanguage,
+        contentType: metadata?.contentType,
+        customMetadata: metadata?.customMetadata,
     );
     fb.UploadTask task;
     if (data is String)
@@ -144,12 +144,12 @@ class FireblendStorageReferenceWeb extends FireblendStorageReference {
   Future<FireblendStorageMetadataWeb> updateMetadata(
       FireblendStorageMetadata metadata) async {
     fb.SettableMetadata aux = fb.SettableMetadata(
-        cacheControl: metadata.cacheControl,
-        contentDisposition: metadata.contentDisposition,
-        contentEncoding: metadata.contentEncoding,
-        contentLanguage: metadata.contentLanguage,
-        contentType: metadata.contentType,
-        customMetadata: metadata.customMetadata,
+        cacheControl: metadata?.cacheControl,
+        contentDisposition: metadata?.contentDisposition,
+        contentEncoding: metadata?.contentEncoding,
+        contentLanguage: metadata?.contentLanguage,
+        contentType: metadata?.contentType,
+        customMetadata: metadata?.customMetadata,
     );
     fb.FullMetadata res = await _reference.updateMetadata(aux);
     return res != null ? FireblendStorageMetadataWeb._full(res) : null;

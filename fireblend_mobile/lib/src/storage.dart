@@ -126,12 +126,12 @@ class FireblendStorageReferenceMobile extends FireblendStorageReference {
   @override
   FireblendUploadTaskMobile put(data, [FireblendStorageMetadata metadata]) {
     StorageMetadata aux = StorageMetadata(
-      cacheControl: metadata.cacheControl,
-      contentDisposition: metadata.contentDisposition,
-      contentEncoding: metadata.contentEncoding,
-      contentLanguage: metadata.contentLanguage,
-      contentType: metadata.contentType,
-      customMetadata: metadata.customMetadata,
+      cacheControl: metadata?.cacheControl,
+      contentDisposition: metadata?.contentDisposition,
+      contentEncoding: metadata?.contentEncoding,
+      contentLanguage: metadata?.contentLanguage,
+      contentType: metadata?.contentType,
+      customMetadata: metadata?.customMetadata,
     );
     if (!(data is File || data is List<int>))
       throw UnsupportedError("Data type is not supported.");
@@ -151,12 +151,12 @@ class FireblendStorageReferenceMobile extends FireblendStorageReference {
   Future<FireblendStorageMetadataMobile> updateMetadata(
       FireblendStorageMetadata metadata) async {
     StorageMetadata aux = StorageMetadata(
-      cacheControl: metadata.cacheControl,
-      contentDisposition: metadata.contentDisposition,
-      contentEncoding: metadata.contentEncoding,
-      contentLanguage: metadata.contentLanguage,
-      contentType: metadata.contentType,
-      customMetadata: metadata.customMetadata,
+      cacheControl: metadata?.cacheControl,
+      contentDisposition: metadata?.contentDisposition,
+      contentEncoding: metadata?.contentEncoding,
+      contentLanguage: metadata?.contentLanguage,
+      contentType: metadata?.contentType,
+      customMetadata: metadata?.customMetadata,
     );
     StorageMetadata res = await _reference.updateMetadata(aux);
     return res != null ? FireblendStorageMetadataMobile._internal(res) : null;
