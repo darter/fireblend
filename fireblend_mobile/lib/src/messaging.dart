@@ -10,9 +10,17 @@ class FireblendMessagingMobile extends FireblendMessaging {
 
   FireblendMessagingMobile() : _messaging = FirebaseMessaging() {
     _controller = StreamController();
-    _messaging.configure(onMessage: (Map<String, dynamic> content) async {
-      _controller.add(content);
-    });
+    _messaging.configure(
+      onMessage: (Map<String, dynamic> content) async {
+        _controller.add(content);
+      },
+      onLaunch: (Map<String, dynamic> content) async {
+        _controller.add(content);
+      },
+      onResume: (Map<String, dynamic> content) async {
+        _controller.add(content);
+      },
+    );
   }
 
   FirebaseMessaging get messaging => _messaging;
