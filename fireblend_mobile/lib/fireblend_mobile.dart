@@ -5,6 +5,7 @@ export 'src/database.dart';
 export 'src/messaging.dart';
 export 'src/storage.dart';
 
+import 'dart:async';
 import 'dart:io' show Platform;
 import 'package:firebase_core/firebase_core.dart';
 import 'package:fireblend/fireblend.dart';

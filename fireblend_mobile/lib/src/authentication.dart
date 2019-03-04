@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
@@ -78,9 +80,12 @@ class FireblendAuthMobile extends FireblendAuth {
           (user) => user != null ? FireblendUserMobile._internal(user) : null);
 
   @override
-  Future reauthenticateWithEmailAndPassword(String email, String password) {
-    return _auth.createUserWithEmailAndPassword(
-        email: email, password: password);
+  Future reauthenticateWithEmailAndPassword(String email, String password) async {
+    FirebaseUser user = await _auth.currentUser();
+    AuthCredential credential = EmailAuthProvider
+        .getCredential(email: email, password: password);
+    user.reauthenticateWithCredential(credential);
+    return user != null ? FireblendUserMobile._internal(user) : null;
   }
 
   @override

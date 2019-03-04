@@ -1,3 +1,5 @@
+import 'dart:async';
+
 abstract class FireblendStorage {
   FireblendStorageReference ref([String path]);
   FireblendStorageReference refFromUrl(String url);

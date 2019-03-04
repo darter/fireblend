@@ -1,3 +1,5 @@
+import 'dart:async';
+
 abstract class FireblendDatabase {
   FireblendDatabaseReference ref([String path]);
   Future goOnline();

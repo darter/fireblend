@@ -1,3 +1,5 @@
+import 'dart:async';
+
 abstract class FireblendAuth {
   Future signOut();
   Future<FireblendUser> currentUser();
