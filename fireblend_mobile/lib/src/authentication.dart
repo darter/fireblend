@@ -84,7 +84,7 @@ class FireblendAuthMobile extends FireblendAuth {
     FirebaseUser user = await _auth.currentUser();
     AuthCredential credential = EmailAuthProvider
         .getCredential(email: email, password: password);
-    user.reauthenticateWithCredential(credential);
+    user = await user.reauthenticateWithCredential(credential);
     return user != null ? FireblendUserMobile._internal(user) : null;
   }
 
@@ -93,7 +93,7 @@ class FireblendAuthMobile extends FireblendAuth {
     FirebaseUser user = await _auth.currentUser();
     AuthCredential credential = FacebookAuthProvider
         .getCredential(accessToken: accessToken);
-    user.reauthenticateWithCredential(credential);
+    user = await user.reauthenticateWithCredential(credential);
     return user != null ? FireblendUserMobile._internal(user) : null;
   }
 
@@ -101,7 +101,7 @@ class FireblendAuthMobile extends FireblendAuth {
   Future reauthenticateWithGithubCredential(String token) async {
     FirebaseUser user = await _auth.currentUser();
     AuthCredential credential = GithubAuthProvider.getCredential(token: token);
-    user.reauthenticateWithCredential(credential);
+    user = await user.reauthenticateWithCredential(credential);
     return user != null ? FireblendUserMobile._internal(user) : null;
   }
 
@@ -111,7 +111,7 @@ class FireblendAuthMobile extends FireblendAuth {
     FirebaseUser user = await _auth.currentUser();
     AuthCredential credential = GoogleAuthProvider
         .getCredential(idToken: idToken, accessToken: accessToken);
-    user.reauthenticateWithCredential(credential);
+    user = await user.reauthenticateWithCredential(credential);
     return user != null ? FireblendUserMobile._internal(user) : null;
   }
 
@@ -121,7 +121,7 @@ class FireblendAuthMobile extends FireblendAuth {
     FirebaseUser user = await _auth.currentUser();
     AuthCredential credential = TwitterAuthProvider
         .getCredential(authToken: authToken, authTokenSecret: authTokenSecret);
-    user.reauthenticateWithCredential(credential);
+    user = await user.reauthenticateWithCredential(credential);
     return user != null ? FireblendUserMobile._internal(user) : null;
   }
 
