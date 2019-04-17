@@ -96,6 +96,19 @@ class FireblendDatabaseReferenceMobile extends FireblendQueryMobile
   Future update(Map<String, dynamic> value) {
     return _reference.update(value);
   }
+
+  @override
+  Future<FireblendDataSnapshotMobile> transaction(Function function) async {
+    TransactionHandler handler = (MutableData mutableData) async {
+      dynamic value = await function(mutableData.value);
+      return mutableData..value = value;
+    };
+
+    TransactionResult result = await _reference.runTransaction(handler);
+    return result.dataSnapshot != null
+        ? FireblendDataSnapshotMobile._internal(result.dataSnapshot)
+        : null;
+  }
 }
 
 class FireblendQueryMobile extends FireblendQuery {

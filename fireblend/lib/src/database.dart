@@ -14,6 +14,7 @@ abstract class FireblendDatabaseReference extends FireblendQuery {
   Future set(value, {dynamic priority});
   Future remove();
   Future update(Map<String, dynamic> value);
+  Future<FireblendDataSnapshot> transaction(Function);
   Future setPriority(priority);
   String get key;
 }

@@ -80,10 +80,8 @@ class FireblendDatabaseReferenceWeb extends FireblendQueryWeb
 
   @override
   Future set(value, {priority}) {
-    if (priority == null)
-      return _reference.set(value);
-    else
-      return _reference.setWithPriority(value, priority);
+    if (priority == null) return _reference.set(value);
+    else return _reference.setWithPriority(value, priority);
   }
 
   @override
@@ -94,6 +92,14 @@ class FireblendDatabaseReferenceWeb extends FireblendQueryWeb
   @override
   Future update(Map<String, dynamic> value) {
     return _reference.update(value);
+  }
+
+  @override
+  Future<FireblendDataSnapshotWeb> transaction(Function function) async {
+    fb.Transaction transaction = await _reference.transaction(function);
+    return transaction.snapshot != null
+        ? FireblendDataSnapshotWeb._internal(transaction.snapshot)
+        : null;
   }
 }
 
