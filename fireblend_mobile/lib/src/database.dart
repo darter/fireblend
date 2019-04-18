@@ -109,6 +109,14 @@ class FireblendDatabaseReferenceMobile extends FireblendQueryMobile
         ? FireblendDataSnapshotMobile._internal(result.dataSnapshot)
         : null;
   }
+
+  @override
+  FireblendOnDisconnectMobile onDisconnect() {
+    OnDisconnect onDisconnect = _reference.onDisconnect();
+    return onDisconnect != null
+        ? FireblendOnDisconnectMobile._internal(onDisconnect)
+        : null;
+  }
 }
 
 class FireblendQueryMobile extends FireblendQuery {
@@ -273,4 +281,30 @@ class FireblendDataSnapshotMobile extends FireblendDataSnapshot {
 
   @override
   dynamic get value => _snapshot.value;
+}
+
+class FireblendOnDisconnectMobile extends FireblendOnDisconnect {
+  final OnDisconnect _onDisconnect;
+
+  FireblendOnDisconnectMobile._internal(this._onDisconnect);
+
+  @override
+  Future set(value, {priority}) {
+    return _onDisconnect.set(value, priority: priority);
+  }
+
+  @override
+  Future remove() {
+    return _onDisconnect.remove();
+  }
+
+  @override
+  Future cancel() {
+    return _onDisconnect.cancel();
+  }
+
+  @override
+  Future update(Map<String, dynamic> value) {
+    return _onDisconnect.update(value);
+  }
 }

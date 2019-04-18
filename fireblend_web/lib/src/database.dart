@@ -101,6 +101,14 @@ class FireblendDatabaseReferenceWeb extends FireblendQueryWeb
         ? FireblendDataSnapshotWeb._internal(transaction.snapshot)
         : null;
   }
+
+  @override
+  FireblendOnDisconnectWeb onDisconnect() {
+    fb.OnDisconnect onDisconnect = _reference.onDisconnect();
+    return onDisconnect != null
+        ? FireblendOnDisconnectWeb._internal(onDisconnect)
+        : null;
+  }
 }
 
 class FireblendQueryWeb extends FireblendQuery {
@@ -267,4 +275,31 @@ class FireblendDataSnapshotWeb extends FireblendDataSnapshot {
 
   @override
   dynamic get value => _snapshot.val();
+}
+
+class FireblendOnDisconnectWeb extends FireblendOnDisconnect {
+  final fb.OnDisconnect _onDisconnect;
+
+  FireblendOnDisconnectWeb._internal(this._onDisconnect);
+
+  @override
+  Future set(value, {priority}) {
+    if (priority == null) return _onDisconnect.set(value);
+    else return _onDisconnect.setWithPriority(value, priority);
+  }
+
+  @override
+  Future remove() {
+    return _onDisconnect.remove();
+  }
+
+  @override
+  Future cancel() {
+    return _onDisconnect.cancel();
+  }
+
+  @override
+  Future update(Map<String, dynamic> value) {
+    return _onDisconnect.update(value);
+  }
 }

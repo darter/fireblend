@@ -17,6 +17,7 @@ abstract class FireblendDatabaseReference extends FireblendQuery {
   Future<FireblendDataSnapshot> transaction(Function function);
   Future setPriority(priority);
   String get key;
+  FireblendOnDisconnect onDisconnect();
 }
 
 abstract class FireblendQuery {
@@ -48,4 +49,11 @@ abstract class FireblendEvent {
 abstract class FireblendDataSnapshot {
   String get key;
   dynamic get value;
+}
+
+abstract class FireblendOnDisconnect {
+  Future set(value, {dynamic priority});
+  Future remove();
+  Future cancel();
+  Future update(Map<String, dynamic> value);
 }
