@@ -36,7 +36,7 @@ class FireblendAuthMobile extends FireblendAuth {
       String email, String password) async {
     AuthCredential credential = EmailAuthProvider
         .getCredential(email: email, password: password);
-    FirebaseUser user = await _auth.linkWithCredential(credential);
+    FirebaseUser user = await (await _auth.currentUser()).linkWithCredential(credential);
     return user != null ? FireblendUserMobile._internal(user) : null;
   }
 
@@ -45,14 +45,14 @@ class FireblendAuthMobile extends FireblendAuth {
       String accessToken) async {
     AuthCredential credential = FacebookAuthProvider
         .getCredential(accessToken: accessToken);
-    FirebaseUser user = await _auth.linkWithCredential(credential);
+    FirebaseUser user = await (await _auth.currentUser()).linkWithCredential(credential);
     return user != null ? FireblendUserMobile._internal(user) : null;
   }
 
   @override
   Future<FireblendUserMobile> linkWithGithubCredential(String token) async {
     AuthCredential credential = GithubAuthProvider.getCredential(token: token);
-    FirebaseUser user = await _auth.linkWithCredential(credential);
+    FirebaseUser user = await (await _auth.currentUser()).linkWithCredential(credential);
     return user != null ? FireblendUserMobile._internal(user) : null;
   }
 
@@ -61,7 +61,7 @@ class FireblendAuthMobile extends FireblendAuth {
       String idToken, String accessToken) async {
     AuthCredential credential = GoogleAuthProvider
         .getCredential(idToken: idToken, accessToken: accessToken);
-    FirebaseUser user = await _auth.linkWithCredential(credential);
+    FirebaseUser user = await (await _auth.currentUser()).linkWithCredential(credential);
     return user != null ? FireblendUserMobile._internal(user) : null;
   }
 
@@ -70,7 +70,7 @@ class FireblendAuthMobile extends FireblendAuth {
       String authToken, String authTokenSecret) async {
     AuthCredential credential = TwitterAuthProvider
         .getCredential(authToken: authToken, authTokenSecret: authTokenSecret);
-    FirebaseUser user = await _auth.linkWithCredential(credential);
+    FirebaseUser user = await (await _auth.currentUser()).linkWithCredential(credential);
     return user != null ? FireblendUserMobile._internal(user) : null;
   }
 
@@ -218,14 +218,12 @@ class FireblendUserMobile extends FireblendUserInfoMobile
 
   @override
   FireblendUserMetadataMobile get metadata => _user.metadata != null
-      ? FireblendUserMetadataMobile._internal(_user.metadata)
-      : null;
+      ? FireblendUserMetadataMobile._internal(_user.metadata) : null;
 
   @override
-  List<FireblendUserInfoMobile> get providerData => _user.providerData
-      ?.map((info) =>
-          info != null ? FireblendUserInfoMobile._internal(info) : null)
-      ?.toList();
+  List<FireblendUserInfoMobile> get providerData =>
+      _user.providerData?.map((info) => info != null
+          ? FireblendUserInfoMobile._internal(info) : null)?.toList();
 
   @override
   Future reload() {
