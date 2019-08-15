@@ -15,17 +15,6 @@ abstract class FireblendAuth {
   Future<FireblendUser> signInWithGithub(String token);
   Future<FireblendUser> signInWithGoogle(String idToken, String accessToken);
   Future<FireblendUser> signInWithCustomToken(String token);
-  Future<FireblendUser> linkWithEmailAndPassword(String email, String password);
-  Future<FireblendUser> linkWithGoogleCredential(String idToken, String accessToken);
-  Future<FireblendUser> linkWithFacebookCredential(String accessToken);
-  Future<FireblendUser> linkWithTwitterCredential(String authToken, String authTokenSecret);
-  Future<FireblendUser> linkWithGithubCredential(String token);
-  // TODO: Move reauthentication to FireblendUser.
-  Future reauthenticateWithEmailAndPassword(String email, String password);
-  Future reauthenticateWithGoogleCredential(String idToken, String accessToken);
-  Future reauthenticateWithFacebookCredential(String accessToken);
-  Future reauthenticateWithTwitterCredential(String authToken, String authTokenSecret);
-  Future reauthenticateWithGithubCredential(String token);
   // TODO: Implement methods involving phone numbers.
 }
 
@@ -41,6 +30,16 @@ abstract class FireblendUser extends FireblendUserInfo {
   Future updateEmail(String email);
   Future updatePassword(String password);
   Future updateProfile(FireblendUserProfile userProfile);
+  Future<FireblendUser> linkWithEmailAndPassword(String email, String password);
+  Future<FireblendUser> linkWithGoogleCredential(String idToken, String accessToken);
+  Future<FireblendUser> linkWithFacebookCredential(String accessToken);
+  Future<FireblendUser> linkWithTwitterCredential(String authToken, String authTokenSecret);
+  Future<FireblendUser> linkWithGithubCredential(String token);
+  Future reauthenticateWithEmailAndPassword(String email, String password);
+  Future reauthenticateWithGoogleCredential(String idToken, String accessToken);
+  Future reauthenticateWithFacebookCredential(String accessToken);
+  Future reauthenticateWithTwitterCredential(String authToken, String authTokenSecret);
+  Future reauthenticateWithGithubCredential(String token);
 }
 
 abstract class FireblendUserInfo {
