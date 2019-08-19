@@ -14,7 +14,7 @@ class FireblendAuthMobile extends FireblendAuth {
 
   @override
   Future<FireblendUserMobile> createUserWithEmailAndPassword(String email, String password) async {
-    FirebaseUser user = await _auth.createUserWithEmailAndPassword(email: email, password: password);
+    FirebaseUser user = (await _auth.createUserWithEmailAndPassword(email: email, password: password))?.user;
     return user != null ? FireblendUserMobile._internal(user) : null;
   }
 
@@ -43,47 +43,47 @@ class FireblendAuthMobile extends FireblendAuth {
 
   @override
   Future<FireblendUserMobile> signInAnonymously() async {
-    FirebaseUser user = await _auth.signInAnonymously();
+    FirebaseUser user = (await _auth.signInAnonymously())?.user;
     return user != null ? FireblendUserMobile._internal(user) : null;
   }
 
   @override
   Future<FireblendUserMobile> signInWithCustomToken(String token) async {
-    FirebaseUser user = await _auth.signInWithCustomToken(token: token);
+    FirebaseUser user = (await _auth.signInWithCustomToken(token: token))?.user;
     return user != null ? FireblendUserMobile._internal(user) : null;
   }
 
   @override
   Future<FireblendUserMobile> signInWithEmailAndPassword(String email, String password) async {
-    FirebaseUser user = await _auth.signInWithEmailAndPassword(email: email, password: password);
+    FirebaseUser user = (await _auth.signInWithEmailAndPassword(email: email, password: password))?.user;
     return user != null ? FireblendUserMobile._internal(user) : null;
   }
 
   @override
   Future<FireblendUserMobile> signInWithFacebook(String accessToken) async {
     AuthCredential credential = FacebookAuthProvider.getCredential(accessToken: accessToken);
-    FirebaseUser user = await _auth.signInWithCredential(credential);
+    FirebaseUser user = (await _auth.signInWithCredential(credential))?.user;
     return user != null ? FireblendUserMobile._internal(user) : null;
   }
 
   @override
   Future<FireblendUserMobile> signInWithGithub(String token) async {
     AuthCredential credential = GithubAuthProvider.getCredential(token: token);
-    FirebaseUser user = await _auth.signInWithCredential(credential);
+    FirebaseUser user = (await _auth.signInWithCredential(credential))?.user;
     return user != null ? FireblendUserMobile._internal(user) : null;
   }
 
   @override
   Future<FireblendUserMobile> signInWithGoogle(String idToken, String accessToken) async {
     AuthCredential credential = GoogleAuthProvider.getCredential(idToken: idToken, accessToken: accessToken);
-    FirebaseUser user = await _auth.signInWithCredential(credential);
+    FirebaseUser user = (await _auth.signInWithCredential(credential))?.user;
     return user != null ? FireblendUserMobile._internal(user) : null;
   }
 
   @override
   Future<FireblendUserMobile> signInWithTwitter(String authToken, String authTokenSecret) async {
     AuthCredential credential = TwitterAuthProvider.getCredential(authToken: authToken, authTokenSecret: authTokenSecret);
-    FirebaseUser user = await _auth.signInWithCredential(credential);
+    FirebaseUser user = (await _auth.signInWithCredential(credential))?.user;
     return user != null ? FireblendUserMobile._internal(user) : null;
   }
 
@@ -100,8 +100,8 @@ class FireblendUserMobile extends FireblendUserInfoMobile implements FireblendUs
   Future delete() => _user.delete();
 
   @override
-  Future<String> getIdToken({bool refresh = false}) {
-    return _user.getIdToken(refresh: refresh);
+  Future<String> getIdToken({bool refresh = false}) async {
+    return (await _user.getIdToken(refresh: refresh)).token;
   }
 
   @override
@@ -142,70 +142,70 @@ class FireblendUserMobile extends FireblendUserInfoMobile implements FireblendUs
   @override
   Future<FireblendUserMobile> linkWithEmailAndPassword(String email, String password) async {
     AuthCredential credential = EmailAuthProvider.getCredential(email: email, password: password);
-    FirebaseUser user = await _user.linkWithCredential(credential);
+    FirebaseUser user = (await _user.linkWithCredential(credential))?.user;
     return user != null ? FireblendUserMobile._internal(user) : null;
   }
 
   @override
   Future<FireblendUserMobile> linkWithFacebookCredential(String accessToken) async {
     AuthCredential credential = FacebookAuthProvider.getCredential(accessToken: accessToken);
-    FirebaseUser user = await _user.linkWithCredential(credential);
+    FirebaseUser user = (await _user.linkWithCredential(credential))?.user;
     return user != null ? FireblendUserMobile._internal(user) : null;
   }
 
   @override
   Future<FireblendUserMobile> linkWithGithubCredential(String token) async {
     AuthCredential credential = GithubAuthProvider.getCredential(token: token);
-    FirebaseUser user = await _user.linkWithCredential(credential);
+    FirebaseUser user = (await _user.linkWithCredential(credential))?.user;
     return user != null ? FireblendUserMobile._internal(user) : null;
   }
 
   @override
   Future<FireblendUserMobile> linkWithGoogleCredential(String idToken, String accessToken) async {
     AuthCredential credential = GoogleAuthProvider.getCredential(idToken: idToken, accessToken: accessToken);
-    FirebaseUser user = await _user.linkWithCredential(credential);
+    FirebaseUser user = (await _user.linkWithCredential(credential))?.user;
     return user != null ? FireblendUserMobile._internal(user) : null;
   }
 
   @override
   Future<FireblendUserMobile> linkWithTwitterCredential(String authToken, String authTokenSecret) async {
     AuthCredential credential = TwitterAuthProvider.getCredential(authToken: authToken, authTokenSecret: authTokenSecret);
-    FirebaseUser user = await _user.linkWithCredential(credential);
+    FirebaseUser user = (await _user.linkWithCredential(credential))?.user;
     return user != null ? FireblendUserMobile._internal(user) : null;
   }
 
   @override
   Future reauthenticateWithEmailAndPassword(String email, String password) async {
     AuthCredential credential = EmailAuthProvider.getCredential(email: email, password: password);
-    FirebaseUser user = await _user.reauthenticateWithCredential(credential);
+    FirebaseUser user = (await _user.reauthenticateWithCredential(credential))?.user;
     return user != null ? FireblendUserMobile._internal(user) : null;
   }
 
   @override
   Future reauthenticateWithFacebookCredential(String accessToken) async {
     AuthCredential credential = FacebookAuthProvider.getCredential(accessToken: accessToken);
-    FirebaseUser user = await _user.reauthenticateWithCredential(credential);
+    FirebaseUser user = (await _user.reauthenticateWithCredential(credential))?.user;
     return user != null ? FireblendUserMobile._internal(user) : null;
   }
 
   @override
   Future reauthenticateWithGithubCredential(String token) async {
     AuthCredential credential = GithubAuthProvider.getCredential(token: token);
-    FirebaseUser user = await _user.reauthenticateWithCredential(credential);
+    FirebaseUser user = (await _user.reauthenticateWithCredential(credential))?.user;
     return user != null ? FireblendUserMobile._internal(user) : null;
   }
 
   @override
   Future reauthenticateWithGoogleCredential(String idToken, String accessToken) async {
     AuthCredential credential = GoogleAuthProvider.getCredential(idToken: idToken, accessToken: accessToken);
-    FirebaseUser user = await _user.reauthenticateWithCredential(credential);
+    FirebaseUser user = (await _user.reauthenticateWithCredential(credential))?.user;
     return user != null ? FireblendUserMobile._internal(user) : null;
   }
 
   @override
   Future reauthenticateWithTwitterCredential(String authToken, String authTokenSecret) async {
     AuthCredential credential = TwitterAuthProvider.getCredential(authToken: authToken, authTokenSecret: authTokenSecret);
-    FirebaseUser user = await _user.reauthenticateWithCredential(credential);
+    FirebaseUser user = (await _user.reauthenticateWithCredential(credential))?.user;
     return user != null ? FireblendUserMobile._internal(user) : null;
   }
 }
@@ -240,8 +240,8 @@ class FireblendUserMetadataMobile extends FireblendUserMetadata {
   FireblendUserMetadataMobile._internal(this._metadata);
 
   @override
-  int get creationTimestamp => _metadata.creationTimestamp;
+  int get creationTimestamp => _metadata.creationTime.millisecondsSinceEpoch;
 
   @override
-  int get lastSignInTimestamp => _metadata.lastSignInTimestamp;
+  int get lastSignInTimestamp => _metadata.lastSignInTime.millisecondsSinceEpoch;
 }

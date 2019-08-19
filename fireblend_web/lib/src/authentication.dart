@@ -233,10 +233,8 @@ class FireblendUserMetadataWeb extends FireblendUserMetadata {
   FireblendUserMetadataWeb._internal(this._metadata);
 
   @override
-  int get creationTimestamp =>
-      DateTime.parse(_metadata.creationTime).millisecondsSinceEpoch;
+  int get creationTimestamp => DateTime.parse(_metadata.creationTime).millisecondsSinceEpoch;
 
   @override
-  int get lastSignInTimestamp =>
-      DateTime.parse(_metadata.lastSignInTime).millisecondsSinceEpoch;
+  int get lastSignInTimestamp => DateTime.parse(_metadata.lastSignInTime).millisecondsSinceEpoch;
 }
