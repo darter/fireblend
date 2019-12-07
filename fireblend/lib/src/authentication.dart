@@ -7,7 +7,7 @@ abstract class FireblendAuth {
   Future setLanguageCode(String language);
   Future<FireblendUser> signInAnonymously();
   Future<FireblendUser> createUserWithEmailAndPassword(String email, String password);
-  Future<List<String>> fetchProvidersForEmail(String email);
+  Future<List<String>> fetchSignInMethodsForEmail(String email);
   Future sendPasswordResetEmail(String email);
   Future<FireblendUser> signInWithEmailAndPassword(String email, String password);
   Future<FireblendUser> signInWithFacebook(String accessToken);

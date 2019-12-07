@@ -25,7 +25,7 @@ class FireblendAuthMobile extends FireblendAuth {
   }
 
   @override
-  Future<List<String>> fetchProvidersForEmail(String email) =>
+  Future<List<String>> fetchSignInMethodsForEmail(String email) =>
       _auth.fetchSignInMethodsForEmail(email: email);
 
   @override
