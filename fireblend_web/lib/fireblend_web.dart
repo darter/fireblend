@@ -28,7 +28,9 @@ class FireblendWeb extends Fireblend{
       app = fb.app(config.projectId);
     } catch (e) {
       app = fb.initializeApp(
+          appId: config.appId,
           apiKey: config.apiKey,
+          measurementId: config.measurementId,
           authDomain: config.authDomain,
           databaseURL: config.databaseUrl,
           projectId: config.projectId,
