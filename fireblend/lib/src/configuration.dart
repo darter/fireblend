@@ -35,8 +35,9 @@ class FireblendConfiguration {
       iosGoogleAppId: json['iosGoogleAppId'] as String,
       measurementId: json['measurementId'] as String,
       messageSenderId: json['messageSenderId'] as String,
-      bundleId: json['bundleId'] as String),
-      appId: json['appId'] as String);
+      bundleId: json['bundleId'] as String,
+      appId: json['appId'] as String,
+  );
 
   Map<String, dynamic> toJson() => <String, dynamic>{
     'apiKey': apiKey,
