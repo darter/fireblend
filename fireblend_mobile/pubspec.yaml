@@ -14,7 +14,7 @@ dependencies:
   firebase_database: ^3.1.0
   firebase_storage: ^3.0.8
   firebase_auth: ^0.15.1
-  firebase_messaging: ^6.0.2
+  firebase_messaging: 7.0.3
   fireblend:
     git:
       url: https://github.com/darter/fireblend
