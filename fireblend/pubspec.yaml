@@ -1,13 +1,11 @@
 name: fireblend
 description: A starting point for Dart libraries or applications.
-# version: 1.0.0
-# author: Eduardo <email@example.com>
-# homepage: https://www.example.com
+publish_to: none
 
 environment:
-  sdk: '>=2.0.0 <3.0.0'
+  sdk: ">=2.18.0 <3.0.0"
 
 dev_dependencies:
-  test: ^1.9.4
-  analyzer: 0.39.1 # TODO: Remove when the issue is fixed.
+  test: 1.24.3 
+  analyzer: 5.13.0
   # https://github.com/dart-lang/sdk/issues/39702

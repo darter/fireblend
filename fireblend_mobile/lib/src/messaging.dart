@@ -6,24 +6,25 @@ import 'package:fireblend/fireblend.dart';
 
 class FireblendMessagingMobile extends FireblendMessaging {
   FirebaseMessaging _messaging;
-  StreamController<Map<String, dynamic>> _controller;
+  late StreamController<RemoteMessage> _controller;
 
-  FireblendMessagingMobile() : _messaging = FirebaseMessaging() {
+  FireblendMessagingMobile() : _messaging = FirebaseMessaging.instance {
     _controller = StreamController();
-    _messaging.configure(onMessage: (Map<String, dynamic> content) async {
-      _controller.add(content);
-    });
+    //    _messaging.subscribeToTopic(onMessage: (Map<String, dynamic> content) async {
+    //      _controller.add(content);
+    //    });
   }
 
   FirebaseMessaging get messaging => _messaging;
 
   @override
-  Future<String> getToken() {
+  Future<String?> getToken() {
     return _messaging.getToken();
   }
 
   @override
-  Stream<Map<String, dynamic>> get onMessage => _controller.stream;
+  Stream<Map<String, dynamic>> get onMessage =>
+      _controller.stream.map((event) => event.toMap());
 
   @override
   Stream<dynamic> get onTokenRefresh => _messaging.onTokenRefresh;

@@ -1,24 +1,20 @@
 name: fireblend_mobile
 description: A new Flutter project.
-# version: 0.0.1
-# author:
-# homepage:
+publish_to: none
 
 environment:
-  sdk: ">=2.0.0 <3.0.0"
+  sdk: ">=2.18.0 <3.0.0"
 
 dependencies:
   flutter:
     sdk: flutter
-  firebase_core: ^0.4.2+1
-  firebase_database: ^3.1.0
-  firebase_storage: ^3.0.8
-  firebase_auth: ^0.15.1
-  firebase_messaging: ^6.0.2
+  firebase_core: 2.14.0
+  firebase_database: 10.2.3
+  firebase_storage: 11.2.3
+  firebase_auth: 4.6.3
+  firebase_messaging: 14.6.3
   fireblend:
-    git:
-      url: https://github.com/darter/fireblend
-      path: fireblend/
+    path: ../fireblend
 
 dev_dependencies:
   flutter_test:
