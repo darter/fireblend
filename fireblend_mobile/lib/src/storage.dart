@@ -1,7 +1,6 @@
 import 'dart:async';
 import 'dart:io';
 import 'dart:typed_data';
-
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 
@@ -103,7 +102,7 @@ class FireblendStorageReferenceMobile extends FireblendStorageReference {
   }
 
   @override
-  Future<String?> getName() async {
+  String? getName() {
     return _reference?.name;
   }
 
@@ -137,8 +136,8 @@ class FireblendStorageReferenceMobile extends FireblendStorageReference {
     UploadTask? task;
     if (data is File)
       task = _reference?.putFile(data, aux);
-    else if (data is Uint8List)
-      task = _reference?.putData(data, aux);
+    else if (data is List<int>)
+      task = _reference?.putData(Uint8List.fromList(data), aux);
     else
       throw UnsupportedError('Data type is not supported.');
     return task != null ? FireblendUploadTaskMobile._internal(task) : null;
@@ -154,7 +153,8 @@ class FireblendStorageReferenceMobile extends FireblendStorageReference {
 
   @override
   Future<FireblendStorageMetadataMobile?> updateMetadata(
-      FireblendStorageMetadata metadata,) async {
+    FireblendStorageMetadata metadata,
+  ) async {
     SettableMetadata aux = SettableMetadata(
       cacheControl: metadata.cacheControl,
       contentDisposition: metadata.contentDisposition,
@@ -175,14 +175,14 @@ class FireblendStorageMetadataMobile extends FireblendStorageMetadata {
 
   FullMetadata? get metadata => _metadata;
 
-  FireblendStorageMetadataMobile(
-      {String? cacheControl,
-      String? contentDisposition,
-      String? contentEncoding,
-      String? contentLanguage,
-      String? contentType,
-      Map<String, String>? customMetadata,})
-      : _metadata = FullMetadata({
+  FireblendStorageMetadataMobile({
+    String? cacheControl,
+    String? contentDisposition,
+    String? contentEncoding,
+    String? contentLanguage,
+    String? contentType,
+    Map<String, String>? customMetadata,
+  })  : _metadata = FullMetadata({
           'cacheControl': cacheControl,
           'contentDisposition': contentDisposition,
           'contentEncoding': contentEncoding,
@@ -191,13 +191,14 @@ class FireblendStorageMetadataMobile extends FireblendStorageMetadata {
           'customMetadata': customMetadata,
         }),
         super(
-            md5Hash: null,
-            cacheControl: cacheControl,
-            contentDisposition: contentDisposition,
-            contentEncoding: contentEncoding,
-            contentLanguage: contentLanguage,
-            contentType: contentType,
-            customMetadata: customMetadata,);
+          md5Hash: null,
+          cacheControl: cacheControl,
+          contentDisposition: contentDisposition,
+          contentEncoding: contentEncoding,
+          contentLanguage: contentLanguage,
+          contentType: contentType,
+          customMetadata: customMetadata,
+        );
 
   @override
   String? get bucket => _metadata?.bucket;

@@ -10,9 +10,9 @@ class FireblendMessagingMobile extends FireblendMessaging {
 
   FireblendMessagingMobile() : _messaging = FirebaseMessaging.instance {
     _controller = StreamController();
-    //    _messaging.subscribeToTopic(onMessage: (Map<String, dynamic> content) async {
-    //      _controller.add(content);
-    //    });
+    FirebaseMessaging.onMessage.listen((RemoteMessage message) {
+      _controller.add(message);
+    });
   }
 
   FirebaseMessaging get messaging => _messaging;

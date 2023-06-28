@@ -21,11 +21,11 @@ abstract class FireblendDatabaseReference extends FireblendQuery {
 }
 
 abstract class FireblendQuery {
-  Stream<FireblendEvent?> get onChildAdded;
-  Stream<FireblendEvent?> get onChildRemoved;
-  Stream<FireblendEvent?> get onChildChanged;
-  Stream<FireblendEvent?> get onChildMoved;
-  Stream<FireblendEvent?> get onValue;
+  Stream<FireblendEvent?>? get onChildAdded;
+  Stream<FireblendEvent?>? get onChildRemoved;
+  Stream<FireblendEvent?>? get onChildChanged;
+  Stream<FireblendEvent?>? get onChildMoved;
+  Stream<FireblendEvent?>? get onValue;
   FireblendDatabaseReference? reference();
   Future<FireblendDataSnapshot?> once();
   FireblendQuery? startAt(dynamic value, {String key});

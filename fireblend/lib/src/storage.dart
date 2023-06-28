@@ -19,7 +19,7 @@ abstract class FireblendStorageReference {
   FireblendUploadTask? put(dynamic data, [FireblendStorageMetadata metadata]);
   Future? delete();
   Future? getDownloadURL();
-  Future<String?> getName();
+  String? getName();
   Future<FireblendStorageMetadata?> getMetadata();
   Future<FireblendStorageMetadata?> updateMetadata(
       FireblendStorageMetadata metadata);
