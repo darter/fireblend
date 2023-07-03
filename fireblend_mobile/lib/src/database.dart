@@ -1,5 +1,4 @@
 import 'dart:async';
-
 import 'package:collection/collection.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_database/firebase_database.dart';
@@ -99,8 +98,6 @@ class FireblendDatabaseReferenceMobile extends FireblendQueryMobile
 
   @override
   Future<FireblendDataSnapshotMobile?> transaction(Function function) async {
-    print('NO OLVIDAR ESTO DE AQUI!');
-    //TODO: NO OLVIDAR REVISAR ESTO
     TransactionResult? result = await _reference?.runTransaction((mutableData) {
       dynamic value = function(mutableData);
       return Transaction.success(mutableData = value);
