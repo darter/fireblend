@@ -14,7 +14,9 @@ dependencies:
   firebase_auth: 4.6.3
   firebase_messaging: 14.6.3
   fireblend:
-    path: ../fireblend
+    git:
+      url: https://github.com/darter/fireblend
+      path: fireblend/
 
 dev_dependencies:
   flutter_test:
