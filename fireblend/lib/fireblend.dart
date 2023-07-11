@@ -1,5 +1,3 @@
-library fireblend;
-
 export 'src/authentication.dart';
 export 'src/configuration.dart';
 export 'src/database.dart';
