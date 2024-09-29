@@ -8,11 +8,12 @@ environment:
   sdk: '>=2.0.0 <3.0.0'
 
 dependencies:
-  firebase: ^7.1.0
+  firebase: 8.0.0
   fireblend:
     git:
       url: https://github.com/darter/fireblend
       path: fireblend/
+      ref: ad03f84f1380f6765b2da7cf470749e48184d777
 
 dev_dependencies:
   test: ^1.9.4
