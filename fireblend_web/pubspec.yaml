@@ -13,6 +13,7 @@ dependencies:
     git:
       url: https://github.com/darter/fireblend
       path: fireblend/
+      ref: old
 
 dev_dependencies:
   test: ^1.9.4
